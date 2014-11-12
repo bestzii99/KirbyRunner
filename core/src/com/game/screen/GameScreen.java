@@ -128,7 +128,7 @@ public class GameScreen extends ScreenBase {
 		box.setPosition(box.getPosition().x-2, box.getPosition().y);
 		box.setBounds(box.getPosition().x, box.getPosition().y, box.getWidth(), box.getHeight());
 		if(game.kirby.getBounds().overlaps(box.getBounds())){
-			System.out.println("Overlap!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+			System.out.println("Overlap!");
 		}
 		
 	
