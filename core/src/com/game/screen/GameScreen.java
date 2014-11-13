@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.TimeUtils;
+import com.game.controller.EnemyController;
 import com.game.controller.GameInputProcessing;
 import com.game.controller.GameRender;
 import com.game.object.EnemyBox;
@@ -24,8 +25,10 @@ public class GameScreen extends ScreenBase {
 	
 	GameRender renderer;
 	GameInputProcessing controller;
-	EnemyBox box;
+	EnemyController enemyController;
+	
 	public static float stateTime = 0f;
+	
 	Texture bg_1;
 	Texture bg_2;
 	
@@ -35,8 +38,7 @@ public class GameScreen extends ScreenBase {
 		game.kirby = new Kirby();
 		renderer = new GameRender(game);
 		controller = new GameInputProcessing(game);
-		box = new EnemyBox();
-		
+		enemyController = new EnemyController(game, this);
 		currentBgX = width;
 		lastTimeBg = TimeUtils.nanoTime();
 		bg_1 = Assets.bg_game_1;
@@ -92,10 +94,6 @@ public class GameScreen extends ScreenBase {
 					isChange = false;
 				}
 			}.start();
-			
-			
-			
-//			fadeTime -= 0.1f;
 			isChange = true;
 		}else if (cntTime == 21){
 			bg_1 = Assets.bg_game_2;			
@@ -115,39 +113,24 @@ public class GameScreen extends ScreenBase {
 			fadeTime = 0f;
 		}
 		
-//		EnemyBox box;
-		
 
 		game.batch.draw(bg_1, currentBgX-width, 0, width, height);
 		game.batch.draw(bg_1, currentBgX, 0, width, height);
-		game.batch.draw(Assets.stone_1,box.getPosition().x, box.getPosition().y,50,45);
 		renderer.render();
+		enemyController.processing();
+		
+		currentBgX -= game.kirby.getSpeed();
+		if(currentBgX == 0){
+			currentBgX = width;
+		}
 		
 		game.batch.end();
 		
-		box.setPosition(box.getPosition().x-2, box.getPosition().y);
-		box.setBounds(box.getPosition().x, box.getPosition().y, box.getWidth(), box.getHeight());
-		if(game.kirby.getBounds().overlaps(box.getBounds())){
-			System.out.println("Overlap!!!!!!!!!!!!!!!!");
-		}
-		
-	
-		// move the separator each 1s
-//		if(TimeUtils.nanoTime() - lastTimeBg > 100000000){
-			// move the separator 50px
-//			currentBgX -= 2;
-			// set the current time to lastTimeBg
-//			lastTimeBg = TimeUtils.nanoTime();
-//		}
-
-		// if the seprator reaches the screen edge, move it back to the first position
-//		currentBgX -= 2;
-//		if(currentBgX == -1200+760){
-//			currentBgX = width;
-//		}
-		currentBgX -= 2;
-		if(currentBgX == 0){
-			currentBgX = width;
+		/**** Frame rate ****/
+		try {
+			Thread.sleep((long)(1000/60-Gdx.graphics.getDeltaTime()));
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 	}
 

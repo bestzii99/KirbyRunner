@@ -20,11 +20,12 @@ public class Assets {
 	public static Texture stone_3;
 	public static Texture stone_4;
 	
-	
 	public static Animation2 kirbyRun;
 	public static Animation2 kirbyDeath;
 	public static Animation2 kirbyHurt;
 	public static Animation2 kirbyJump;
+	public static Animation2 kirbySpin;
+	public static Animation2 kirbySlide;
 
 	
 	public static TextureRegion loadSprite(String file){
@@ -50,6 +51,8 @@ public class Assets {
 		stone_3 = loadTexture("Object/stone/Stone3.png");
 		stone_4 = loadTexture("Object/stone/Stone4.png");
 		
+		
+		
 		kirbyRun = new Animation2(0.07f,
 			loadSprite("Object/character_walk/Walk1.png"),
 			loadSprite("Object/character_walk/Walk2.png"),
@@ -62,6 +65,7 @@ public class Assets {
 			loadSprite("Object/character_walk/Walk9.png"),
 			loadSprite("Object/character_walk/Walk10.png")
 			);
+		
 		kirbyJump = new Animation2(0.03f,
 			loadSprite("Object/character_jump/Jump1.png"),
 			loadSprite("Object/character_jump/Jump2.png"),
@@ -73,7 +77,25 @@ public class Assets {
 			loadSprite("Object/character_jump/Jump8.png")			
 			);
 		
+		kirbySpin = new Animation2(0.1f,
+			loadSprite("Object/character_spin/Spin1.png"),
+			loadSprite("Object/character_spin/Spin2.png"),
+			loadSprite("Object/character_spin/Spin3.png"),
+			loadSprite("Object/character_spin/Spin4.png"),
+			loadSprite("Object/character_spin/Spin5.png"),
+			loadSprite("Object/character_spin/Spin6.png"),
+			loadSprite("Object/character_spin/Spin7.png"),
+			loadSprite("Object/character_spin/Spin8.png")		
+			);
 		
+		kirbyHurt = new Animation2(0.3f,
+				loadSprite("Object/character_hurt/Hurt1.png"),
+				loadSprite("Object/character_hurt/Hurt1_Blur.png"),
+				loadSprite("Object/character_hurt/Hurt2.png"),
+				loadSprite("Object/character_hurt/Hurt2_Blur.png"),
+				loadSprite("Object/character_hurt/Hurt3.png"),
+				loadSprite("Object/character_hurt/Hurt3_Blur.png")
+		);
 		
 
 	}

@@ -36,10 +36,15 @@ public class GameRender {
 //				GameScreen.stateTime = 0f;
 				keyFrame = Assets.kirbyJump.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);
 				break;
+			case Kirby.STATE_SPIN:
+//				GameScreen.stateTime = 0f;
+				keyFrame = Assets.kirbySpin.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);
+				break;
 			default:
 				break;
 		}
 		
 		game.batch.draw(keyFrame, game.kirby.getPosition().x, game.kirby.getPosition().y);
+//		game.batch.draw(keyFrame, game.kirby.getPosition().x, game.kirby.getPosition().y);
 	}
 }

@@ -39,7 +39,7 @@ public abstract class ObjectBase {
 	}
 	
 	public void setBounds(float x, float y, int width, int height){
-		bounds.set(position.x, position.y, width, height);
+		bounds.set(x, y, width, height);
 	}
 	
 	public Rectangle getBounds(){
