@@ -3,12 +3,14 @@ package com.game.object;
 
 public class Kirby extends ObjectBase {
 	
-	private float hp = 10000f;
+	private int hp = 5;
 	private int speed = 4;
 	private int gravity = 7;
 	private int state = 1;
 	private boolean isAction = false;
 	private boolean isAction2 = false;
+	private boolean isActionJump1 = false;
+	private boolean isActionJump2 = false;
 	public static final int STATE_RUN = 1;
 	public static final int STATE_DEATH = 2;
 	public static final int STATE_HURT = 3;
@@ -17,7 +19,7 @@ public class Kirby extends ObjectBase {
 //	public static final int STATE_SLIDE = 6;
 	
 	
-	public void setHp(float hp) {
+	public void setHp(int hp) {
 		this.hp = hp;
 	}
 
@@ -41,7 +43,7 @@ public class Kirby extends ObjectBase {
 		setBounds(getPosition().x, getPosition().y, getWidth(), getHeight());
 	}
 	
-	public float getHp(){
+	public int getHp(){
 		return hp;
 	}
 	
@@ -74,4 +76,19 @@ public class Kirby extends ObjectBase {
 		this.isAction2 = action;
 	}
 	
+	public boolean isActionJump1(){
+		return isActionJump1;
+	}
+	
+	public boolean isActionJump2(){
+		return isActionJump2;
+	}
+	
+	public void setActionJump1(boolean isActionJump){
+		this.isActionJump1 = isActionJump;
+	}
+	
+	public void setActionJump2(boolean isActionJump){
+		this.isActionJump2 = isActionJump;
+	}
 }
