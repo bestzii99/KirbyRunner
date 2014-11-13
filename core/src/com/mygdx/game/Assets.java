@@ -26,7 +26,6 @@ public class Assets {
 	public static Animation2 kirbyJump;
 	public static Animation2 kirbySpin;
 	public static Animation2 kirbySlide;
-	public static Animation2 bird;
 
 	
 	public static TextureRegion loadSprite(String file){
@@ -89,7 +88,7 @@ public class Assets {
 			loadSprite("Object/character_spin/Spin8.png")		
 			);
 		
-		kirbyHurt = new Animation2(0.2f,
+		kirbyHurt = new Animation2(0.3f,
 				loadSprite("Object/character_hurt/Hurt1.png"),
 				loadSprite("Object/character_hurt/Hurt1_Blur.png"),
 				loadSprite("Object/character_hurt/Hurt2.png"),
@@ -97,13 +96,6 @@ public class Assets {
 				loadSprite("Object/character_hurt/Hurt3.png"),
 				loadSprite("Object/character_hurt/Hurt3_Blur.png")
 		);
-		
-		bird = new Animation2(0.1f,
-				loadSprite("Object/bird/Twitter-bird1.png"),
-				loadSprite("Object/bird/Twitter-bird2.png"),
-				loadSprite("Object/bird/Twitter-bird3.png"),
-				loadSprite("Object/bird/Twitter-bird4.png")
-				);
 		
 
 	}
