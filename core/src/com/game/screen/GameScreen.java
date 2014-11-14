@@ -25,7 +25,7 @@ public class GameScreen extends ScreenBase {
 	
 	GameRender renderer;
 	GameInputProcessing controller;
-	EnemyController enemyController;
+	//EnemyController enemyController;
 	
 	public static float stateTime = 0f;
 	
@@ -38,7 +38,7 @@ public class GameScreen extends ScreenBase {
 		game.kirby = new Kirby();
 		renderer = new GameRender(game);
 		controller = new GameInputProcessing(game);
-		enemyController = new EnemyController(game, this);
+		game.enemyController = new EnemyController(game, this);
 		currentBgX = width;
 		lastTimeBg = TimeUtils.nanoTime();
 		bg_1 = Assets.bg_game_1;
@@ -117,7 +117,7 @@ public class GameScreen extends ScreenBase {
 		game.batch.draw(bg_1, currentBgX-width, 0, width, height);
 		game.batch.draw(bg_1, currentBgX, 0, width, height);
 		renderer.render();
-		enemyController.processing();
+		game.enemyController.processing();
 		
 		currentBgX -= game.kirby.getSpeed();
 		if(currentBgX == 0){

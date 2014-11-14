@@ -14,6 +14,9 @@ public class EnemyBox extends Enemy{
 		setWidth(50);
 		setHeight(45);
 		setBounds(getPosition().x, getPosition().y, getWidth(), getHeight());
+		setType(1+(int)(Math.random()*4));
+
+		
 	}
 	
 
