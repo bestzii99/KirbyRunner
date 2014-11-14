@@ -20,6 +20,8 @@ public class Assets {
 	public static Texture stone_3;
 	public static Texture stone_4;
 	
+	public static Texture dust;
+	
 	public static Animation2 kirbyRun;
 	public static Animation2 kirbyDeath;
 	public static Animation2 kirbyHurt;
@@ -51,6 +53,8 @@ public class Assets {
 		stone_2 = loadTexture("Object/stone/Stone2.png");
 		stone_3 = loadTexture("Object/stone/Stone3.png");
 		stone_4 = loadTexture("Object/stone/Stone4.png");
+		
+		dust = loadTexture("Object/Dust/Dust.png");
 		
 		
 		

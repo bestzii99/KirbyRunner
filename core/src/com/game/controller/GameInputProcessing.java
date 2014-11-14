@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.game.object.EnemyBox;
 import com.game.object.Kirby;
+import com.mygdx.game.Assets;
 import com.mygdx.game.GameProject;
 
 public class GameInputProcessing {
@@ -20,6 +21,8 @@ public class GameInputProcessing {
 			game.kirby.setState(Kirby.STATE_RUN);
 			game.kirby.setAction_HurtJump(false);
 			game.kirby.setBounds(game.kirby.getPosition().x, game.kirby.getPosition().x, 50, 50);
+			game.batch.draw(Assets.dust, game.kirby.getPosition().x-10, game.kirby.getPosition().y);
+			
 		}
 		
 		
