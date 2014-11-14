@@ -17,16 +17,15 @@ public class GameInputProcessing {
 	}
 	
 	public void processing(){
-		if(game.kirby.getState() != Kirby.STATE_JUMP && game.kirby.getState() != Kirby.STATE_RUN && game.kirby.getState() != Kirby.STATE_HURT){
+		if(game.kirby.getState() != Kirby.STATE_JUMP &&  game.kirby.getState() != Kirby.STATE_HURT){
 			game.kirby.setState(Kirby.STATE_RUN);
 			game.kirby.setAction_HurtJump(false);
 			game.kirby.setBounds(game.kirby.getPosition().x, game.kirby.getPosition().x, 50, 50);
-			game.batch.draw(Assets.dust, game.kirby.getPosition().x-10, game.kirby.getPosition().y);
+			game.batch.draw(Assets.dust, game.kirby.getPosition().x-60, game.kirby.getPosition().y);
 			
 		}
 		
-		
-		if(Gdx.input.isKeyPressed(Keys.SPACE) && game.kirby.getState() != Kirby.STATE_JUMP && !game.kirby.isAction() && !game.kirby.isAction2()){
+		if(Gdx.input.isKeyPressed(Keys.UP) && game.kirby.getState() != Kirby.STATE_JUMP && !game.kirby.isAction() && !game.kirby.isAction2()){
 			game.kirby.setState(Kirby.STATE_JUMP);
 			game.kirby.setActionJump2(true);
 			game.kirby.setAction_HurtJump(true);

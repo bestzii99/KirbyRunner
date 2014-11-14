@@ -49,6 +49,7 @@ public class GameScreen extends ScreenBase {
 					try {
 						Thread.sleep(1000);
 						cntTime += 1;
+//						if(cntTime == 14)
 						System.out.println(cntTime);
 						
 					} catch (InterruptedException e) {
@@ -69,7 +70,7 @@ public class GameScreen extends ScreenBase {
 		stateTime += Gdx.graphics.getDeltaTime();
 		game.batch.begin();
 		
-		controller.processing();	
+			
 		if(cntTime%20 == 0 && !isChange && cntTime > 0){
 			new Thread(){
 				public void run(){					
@@ -95,6 +96,9 @@ public class GameScreen extends ScreenBase {
 				}
 			}.start();
 			isChange = true;
+			
+		}else if (cntTime == 1){
+			bg_1 = Assets.bg_game_1;
 		}else if (cntTime == 21){
 			bg_1 = Assets.bg_game_2;			
 		}else if(cntTime == 41){
@@ -109,14 +113,20 @@ public class GameScreen extends ScreenBase {
 			bg_1 = Assets.bg_game_7;
 		}else if(cntTime == 141){
 			bg_1 = Assets.bg_game_8;
-		}else{
+			
+		}else if(cntTime == 161){
+			cntTime = 1;
+		}
+		else{
 			fadeTime = 0f;
 		}
 		
 
 		game.batch.draw(bg_1, currentBgX-width, 0, width, height);
 		game.batch.draw(bg_1, currentBgX, 0, width, height);
+		controller.processing();
 		renderer.render();
+		
 		game.enemyController.processing();
 		
 		currentBgX -= game.kirby.getSpeed();

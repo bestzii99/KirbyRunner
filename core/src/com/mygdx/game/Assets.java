@@ -19,6 +19,8 @@ public class Assets {
 	public static Texture stone_2;
 	public static Texture stone_3;
 	public static Texture stone_4;
+	public static Texture stone_5;
+	public static Texture stone_6;
 	
 	public static Texture dust;
 	
@@ -29,7 +31,9 @@ public class Assets {
 	public static Animation2 kirbySpin;
 	public static Animation2 kirbySlide;
 	public static Animation2 bird;
-
+	public static Animation2 phoenix;
+	public static Animation2 nyanCat;
+	public static Animation2 coin;
 	
 	public static TextureRegion loadSprite(String file){
 		return new TextureRegion(new Texture(Gdx.files.internal(file)));
@@ -53,6 +57,8 @@ public class Assets {
 		stone_2 = loadTexture("Object/stone/Stone2.png");
 		stone_3 = loadTexture("Object/stone/Stone3.png");
 		stone_4 = loadTexture("Object/stone/Stone4.png");
+		stone_5 = loadTexture("Object/stone/Stone5.png");
+		stone_6 = loadTexture("Object/stone/Stone6.png");
 		
 		dust = loadTexture("Object/Dust/Dust.png");
 		
@@ -100,7 +106,7 @@ public class Assets {
 				loadSprite("Object/character_hurt/Hurt2_Blur.png"),
 				loadSprite("Object/character_hurt/Hurt3.png"),
 				loadSprite("Object/character_hurt/Hurt3_Blur.png")
-		);
+				);
 		
 		bird = new Animation2(0.1f,
 				loadSprite("Object/bird/Twitter-bird1.png"),
@@ -109,6 +115,42 @@ public class Assets {
 				loadSprite("Object/bird/Twitter-bird4.png")
 				);
 		
-
+		phoenix = new Animation2(0.1f,
+				loadSprite("Object/phoenix/Phoenix1.png"),
+				loadSprite("Object/phoenix/Phoenix2.png"),
+				loadSprite("Object/phoenix/Phoenix3.png"),
+				loadSprite("Object/phoenix/Phoenix4.png"),
+				loadSprite("Object/phoenix/Phoenix5.png"),
+				loadSprite("Object/phoenix/Phoenix6.png"),
+				loadSprite("Object/phoenix/Phoenix7.png"),
+				loadSprite("Object/phoenix/Phoenix8.png"),
+				loadSprite("Object/phoenix/Phoenix9.png"),
+				loadSprite("Object/phoenix/Phoenix10.png"),
+				loadSprite("Object/phoenix/Phoenix11.png"),
+				loadSprite("Object/phoenix/Phoenix12.png"),
+				loadSprite("Object/phoenix/Phoenix13.png"),
+				loadSprite("Object/phoenix/Phoenix14.png"),
+				loadSprite("Object/phoenix/Phoenix15.png"),
+				loadSprite("Object/phoenix/Phoenix16.png")
+				);
+		
+		nyanCat = new Animation2(0.1f,
+				loadSprite("Object/nyancat/NyanCat1.png"),
+				loadSprite("Object/nyancat/NyanCat2.png"),
+				loadSprite("Object/nyancat/NyanCat3.png"),
+				loadSprite("Object/nyancat/NyanCat4.png"),
+				loadSprite("Object/nyancat/NyanCat5.png"),
+				loadSprite("Object/nyancat/NyanCat6.png")
+				);
+		
+		coin = new Animation2(0.1f,
+				loadSprite("Object/coin/Coin1.png"),
+				loadSprite("Object/coin/Coin2.png"),
+				loadSprite("Object/coin/Coin3.png"),
+				loadSprite("Object/coin/Coin4.png"),
+				loadSprite("Object/coin/Coin5.png"),
+				loadSprite("Object/coin/Coin6.png"),
+				loadSprite("Object/coin/Coin7.png")
+				);
 	}
 }
