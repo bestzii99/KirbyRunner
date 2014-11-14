@@ -5,6 +5,7 @@ import java.util.TreeMap;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 import com.game.object.Enemy;
 import com.game.object.EnemyBox;
 import com.game.object.Kirby;
@@ -56,12 +57,27 @@ public class EnemyController {
 				Enemy object = getEnemy().get(id);
 				object.setPosition(object.getPosition().x - game.kirby.getSpeed(), object.getPosition().y);
 				object.setBounds(object.getPosition().x+20, object.getPosition().y, object.getWidth()-20, object.getHeight());
-				checkOverMap(getEnemy().get(id));
 				
+				checkOverMap(getEnemy().get(id));
+				if(object.getType() == 8 ){
+//					game.kirby.setHp(game.kirby.getHp()+1);
+//					System.out.println(game.kirby.getHp()+"<---------HP Plus");
+//					System.out.println("---** "+object.getPosition().x+150);
+					
+					TextureRegion keyFrame = null;
+					keyFrame = Assets.coin.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);
+					game.batch.draw(keyFrame, object.getPosition().x+150, 100,32,32);
+					
+				}		//create coin near bird
+				
+				if( game.kirby.getBounds().overlaps(new Rectangle(object.getPosition().x+150, 100,32,32)) && object.getType() == 8){
+					System.out.println("Get coin+++");
+					
+				}
 				if(game.kirby.getBounds().overlaps(object.getBounds()) && !object.isHit() ){
 					// HP
 					game.kirby.setHp(game.kirby.getHp()-1);
-					System.out.println(game.kirby.getHp() + "<----- P");
+					System.out.println(game.kirby.getHp() + "<----- HP Minus");
 					
 					// OverLap					
 					System.out.println("Overlap!");
@@ -137,17 +153,15 @@ public class EnemyController {
 			if(chk) passed = true;
 		}while(!passed);
 		
-		if(object.getType() >= 7 && object.getType() <= 12) 	// check type bird and create
+		if(object.getType() >= 7 && object.getType() <= 12)	 /*check type bird and create*/
 			object.setPosition(arrayPosition2[ranPos][0], arrayPosition2[ranPos][1]);
+
 		else if(object.getType() >= 1 && object.getType() <= 6)
 			object.setPosition(arrayPosition[ranPos][0], /*arrayPosition[ranPos][1]*/ game.kirby.getPosition().x+4);
-//		else 
-//			object.setPosition(Coin()[0], 100);
 		
 		object.setId(objectId);
 		System.out.println(object.getPosition().x + ", " + object.getPosition().y);
-		enemyList.put(objectId++, object);
-		
+		enemyList.put(objectId++, object);		
 		cntEnemy++;
 	}
 	
@@ -156,15 +170,6 @@ public class EnemyController {
 		cntEnemy--;
 		
 	}
-	
-	private int[] Coin(){
-		int[] coin = new int[1280];
-		for(int i=0;i<1280;i++){
-			coin[i] = i;
-			}
-		return coin;
-	}
-		
 	
 	
 	

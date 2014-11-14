@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.TimeUtils;
+import com.game.controller.CoinController;
 import com.game.controller.EnemyController;
 import com.game.controller.GameInputProcessing;
 import com.game.controller.GameRender;
@@ -39,6 +40,7 @@ public class GameScreen extends ScreenBase {
 		renderer = new GameRender(game);
 		controller = new GameInputProcessing(game);
 		game.enemyController = new EnemyController(game, this);
+		game.coinController = new CoinController(game);
 		currentBgX = width;
 		lastTimeBg = TimeUtils.nanoTime();
 		bg_1 = Assets.bg_game_1;
@@ -126,7 +128,7 @@ public class GameScreen extends ScreenBase {
 		game.batch.draw(bg_1, currentBgX, 0, width, height);
 		controller.processing();
 		renderer.render();
-		
+//		game.coinController.update();
 		game.enemyController.processing();
 		
 		currentBgX -= game.kirby.getSpeed();

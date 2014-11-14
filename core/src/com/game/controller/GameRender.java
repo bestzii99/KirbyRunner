@@ -72,8 +72,7 @@ public class GameRender {
 					
 					
 				case Enemy.BIRD_1:
-					keyFrame = Assets.phoenix.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);
-					
+					keyFrame = Assets.phoenix.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);			
 					game.enemyController.getEnemy().get(id).setBounds(enemy.getPosition().x, enemy.getPosition().y, enemy.getWidth(), enemy.getHeight());
 					game.batch.draw(keyFrame, enemy.getPosition().x, enemy.getPosition().y);
 					break;
@@ -113,9 +112,12 @@ public class GameRender {
 			}
 		}
 		
-		
-		keyFrame = Assets.coin.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);
-		game.batch.draw(keyFrame, x, 100);
-		
+//		
+//		keyFrame = Assets.coin.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);
+//		game.batch.draw(keyFrame, x, 100,32,32);
+//		game.batch.draw(keyFrame, x+40, 100,32,32);
+//		game.batch.draw(keyFrame, x+80, 100,32,32);
+//		game.batch.draw(keyFrame, x+120, 100,32,32);
+//		
 	}
 }
