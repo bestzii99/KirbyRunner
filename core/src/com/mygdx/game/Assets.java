@@ -1,11 +1,13 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class Assets {
 	
+	/*** Texture ***/ 
 	public static Texture bg_game_1;
 	public static Texture bg_game_2;
 	public static Texture bg_game_3;
@@ -27,6 +29,7 @@ public class Assets {
 	public static Texture gameover;
 	public static Texture candy;
 	
+	/*** Animation ***/ 
 	public static Animation2 kirbyRun;
 	public static Animation2 kirbyDeath;
 	public static Animation2 kirbyHurt;
@@ -37,10 +40,17 @@ public class Assets {
 	public static Animation2 bird;
 	public static Animation2 phoenix;
 	public static Animation2 nyanCat;
-	
-	public static Animation2 coin;
 	public static Animation2 dust;
 	public static Animation2 strawberry;
+	
+	
+	/*** Sound ***/ 
+	public static Sound sound_bg;
+	public static Sound sound_jump;
+	public static Sound sound_death;
+	public static Sound sound_hitObject;
+	public static Sound sound_hurt;
+	public static Sound sound_spin;
 	
 	public static TextureRegion loadSprite(String file){
 		return new TextureRegion(new Texture(Gdx.files.internal(file)));
@@ -50,6 +60,7 @@ public class Assets {
 		return new Texture(file);
 	}
 	
+	/**** Load  ****/
 	public static void load(){
 		bg_game_1 = loadTexture("BG/1_Morning.png");
 		bg_game_2 = loadTexture("BG/2_Late_Morning.png");
@@ -152,16 +163,6 @@ public class Assets {
 				loadSprite("Object/nyancat/NyanCat6.png")
 				);
 		
-		coin = new Animation2(0.1f,
-				loadSprite("Object/coin/Coin1.png"),
-				loadSprite("Object/coin/Coin2.png"),
-				loadSprite("Object/coin/Coin3.png"),
-				loadSprite("Object/coin/Coin4.png"),
-				loadSprite("Object/coin/Coin5.png"),
-				loadSprite("Object/coin/Coin6.png"),
-				loadSprite("Object/coin/Coin7.png")
-				);
-		
 		dust = new Animation2(0.1f,
 				loadSprite("Object/Dust/Dust1.png"),
 				loadSprite("Object/Dust/Dust2.png"),
@@ -199,5 +200,19 @@ public class Assets {
 				loadSprite("Object/Strawberry/25.png"),
 				loadSprite("Object/Strawberry/26.png")
 				);
+		
+		
+		sound_bg  = Gdx.audio.newSound(Gdx.files.internal("sound/Sound_BG.mp3"));
+		sound_hitObject = Gdx.audio.newSound(Gdx.files.internal("sound/Sound_HitObject.mp3"));
+		sound_hurt = Gdx.audio.newSound(Gdx.files.internal("sound/Sound_Hurt.mp3"));
+		sound_jump = Gdx.audio.newSound(Gdx.files.internal("sound/Sound_jump.mp3"));
+		sound_death = Gdx.audio.newSound(Gdx.files.internal("sound/Sound_Dead.mp3"));
+		
+		sound_spin = Gdx.audio.newSound(Gdx.files.internal("sound/Sound_Spin.mp3"));
+		
 	}
+	/**** End load****/
+	
+		
+	
 }

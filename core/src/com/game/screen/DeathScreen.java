@@ -29,6 +29,7 @@ public class DeathScreen extends ScreenBase {
 		game.batch.begin();
 		game.batch.draw(Assets.gameover, 0, 0, 640, 480);
 		font.setColor(Color.BLACK);
+		Assets.sound_death.play();
 
 		try {
 			font.draw(game.batch, "High Score : " + game.kirby.HighScore(game.kirby.getScore()), 190, 150) ;

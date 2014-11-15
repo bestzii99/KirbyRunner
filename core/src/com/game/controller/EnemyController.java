@@ -3,6 +3,7 @@ package com.game.controller;
 import java.util.ConcurrentModificationException;
 import java.util.TreeMap;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.game.object.Enemy;
@@ -78,6 +79,7 @@ public class EnemyController {
 				
 				/*** Check Overlap , If overlap plus HP ***/
 				if( game.kirby.getBounds().overlaps(new Rectangle(object.getPosition().x+150, 100,32,32)) && (object.getType() == 8 || object.getType() == 10) && !object.isHit_Coin()){
+					Assets.sound_hitObject.play();
 					game.kirby.setHp(game.kirby.getHp()+1);
 					System.out.println(game.kirby.getHp()+" <------ HP Plus");
 					System.out.println("Get coin+++");
@@ -86,13 +88,17 @@ public class EnemyController {
 					
 				}
 				
-				/*** Set Screen to Death ***/
-				if(game.kirby.getHp() <= 0){
+				/*** Set Screen to Death and Stop sound Background***/
+				if(game.kirby.getHp() == 0){
+					Gdx.app.log("Status", "Die");
+					Assets.sound_bg.stop();
 					game.setScreen(new DeathScreen(game));
 				}
 				
 				/*** Check overlap, If overlap minus HP and set fade Screen color is Red  ***/
 				if(game.kirby.getBounds().overlaps(object.getBounds()) && !object.isHit() ){
+					Assets.sound_hurt.play();
+//					Assets.sound_hitObject.dispose();
 					// HP
 					game.kirby.setHp(game.kirby.getHp()-1);
 					System.out.println(game.kirby.getHp() + "<----- HP Minus");

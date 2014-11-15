@@ -33,11 +33,13 @@ public class GameInputProcessing {
 		
 		/*** Jump ***/
 		if(Gdx.input.isKeyPressed(Keys.UP) && game.kirby.getState() != Kirby.STATE_JUMP && !game.kirby.isAction() && !game.kirby.isAction2()){
+//			Assets.sound_hitObject.play();
 			game.kirby.setState(Kirby.STATE_JUMP);
+			
 			game.kirby.setActionJump2(true);
 			game.kirby.setAction_HurtJump(true);
 			game.kirby.setAction_SpinJump(true);
-			
+			Assets.sound_jump.play();
 			new Thread(){
 				public void run(){
 					for(int i = 1; i<=20; i++){
@@ -66,7 +68,8 @@ public class GameInputProcessing {
 		}
 		
 		/*** Spin ***/
-		else if(Gdx.input.isKeyPressed(Keys.DOWN) && game.kirby.getState() != Kirby.STATE_JUMP && !game.kirby.isAction2()){			
+		else if(Gdx.input.isKeyPressed(Keys.DOWN) && game.kirby.getState() != Kirby.STATE_JUMP && !game.kirby.isAction2()){	
+			Assets.sound_spin.play();
 			game.kirby.setState(Kirby.STATE_SPIN);
 			game.kirby.setAction_SpinJump(false);
 			game.kirby.setBounds(game.kirby.getPosition().x, game.kirby.getPosition().x, 25, 25);

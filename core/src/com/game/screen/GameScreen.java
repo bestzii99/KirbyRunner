@@ -22,7 +22,7 @@ import com.mygdx.game.Assets;
 import com.mygdx.game.GameProject;
 
 public class GameScreen extends ScreenBase {
-	
+
 	GameProject game;
 	float currentBgX;
 	long lastTimeBg;
@@ -31,69 +31,80 @@ public class GameScreen extends ScreenBase {
 	int cntTime = 0;
 	float fadeTime = 1.0f;
 	boolean isChange = false;
-	
+
 	GameRender renderer;
 	GameInputProcessing controller;
-	
+
 	public static float stateTime = 0f;
-	
+
 	Texture bg_1;
 	Texture bg_2;
-	
-	 FileHandle fontFile = Gdx.files.internal("fonts/THSarabun.ttf");
-     FreeTypeFontGenerator generator = new FreeTypeFontGenerator(fontFile);
-     FreeTypeFontParameter param = new FreeTypeFontParameter();
-     BitmapFont font;
-	
+
+	FileHandle fontFile = Gdx.files.internal("fonts/THSarabun.ttf");
+	FreeTypeFontGenerator generator = new FreeTypeFontGenerator(fontFile);
+	FreeTypeFontParameter param = new FreeTypeFontParameter();
+	BitmapFont font;
+
 	public GameScreen(final GameProject game){
-		param.size = 45;
-        param.characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^?.,/\\()&*_+-=;:'\"[]{}";
-        font = generator.generateFont(param);
-		this.game = game;
 		game.kirby = new Kirby();
 		renderer = new GameRender(game);
 		controller = new GameInputProcessing(game);
 		game.enemyController = new EnemyController(game, this);
 		game.coinController = new CoinController(game);
+
+		this.game = game;
+
+		param.size = 45;
+		param.characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^?.,/\\()&*_+-=;:'\"[]{}";
+		font = generator.generateFont(param);
+
 		currentBgX = width;
 		lastTimeBg = TimeUtils.nanoTime();
+
+		/**** set screen1 and screen2 ****/
 		bg_1 = Assets.bg_game_1;
 		bg_2 = Assets.bg_game_1;
-		
-		// count time use fade in-out (if cnt = 20 fade)
+
+		/**** Sound Background****/
+//		long id = Assets.sound_bg.play(0.5f);
+		Assets.sound_bg.loop();	//Loop
+
+
+
+		/**** count time use fade in-out (if cnt = 20 fade) ****/
 		new Thread(){
 			public void run(){
+
 				while(true){
 					try {
 						Thread.sleep(1000);
 						cntTime += 1;
-						
-						if(game.kirby.getHp() != 0) game.kirby.setScore(cntTime);
-						
-//						if(cntTime == 14)
+
+						if(game.kirby.getHp() != 0) game.kirby.setScore(cntTime);	// add score
+
 						System.out.println(cntTime);
-						
+
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
 				}
-				
+
 			}
 		}.start();
 	}
-	
-	
-    public void setFont(int size){
-            param.size = size;
-    }
-	
+
+
+	public void setFont(int size){
+		param.size = size;
+	}
+
 	public void render(float delta) {
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		stateTime += Gdx.graphics.getDeltaTime();
 		game.batch.begin();
-		
-		// fade in-out screen background and infinite loop background
+
+		/**** fade in-out screen background and infinite loop background ****/
 		if(cntTime%20 == 0 && !isChange && cntTime > 0){
 			new Thread(){
 				public void run(){					
@@ -119,7 +130,6 @@ public class GameScreen extends ScreenBase {
 				}
 			}.start();
 			isChange = true;
-			
 		}else if (cntTime == 1){
 			bg_1 = Assets.bg_game_1;
 		}else if (cntTime == 21){
@@ -136,38 +146,39 @@ public class GameScreen extends ScreenBase {
 			bg_1 = Assets.bg_game_7;
 		}else if(cntTime == 141){
 			bg_1 = Assets.bg_game_8;
-			
 		}else if(cntTime == 161){
 			cntTime = 1;
 		}
-		else{
-			fadeTime = 0f;
-		}
-		
 
+		/**** Draw Background****/ 
 		game.batch.draw(bg_1, currentBgX-width, 0, width, height);
 		game.batch.draw(bg_1, currentBgX, 0, width, height);
-		font.setColor(Color.WHITE);		// color of  font
-		font.draw(game.batch, "x " + game.kirby.getHp(), 100, 450);	// show HP
-		font.draw(game.batch, "Score : " + game.kirby.getScore(), 440, 450);	// show score
-		if(Gdx.input.isKeyJustPressed(Keys.D)){
-			game.kirby.setHp(1);
-		}
-		game.batch.draw(Assets.hp, 40, 425);
 		
-		controller.processing();
-		renderer.render();
-
-		game.enemyController.processing();
-		
-		currentBgX -= game.kirby.getSpeed();	// run speed default = 4
-
+		/****  Check Infinite Loop Backround ****/
 		if(currentBgX == 0){
 			currentBgX = width;
 		}
 		
-		game.batch.end();
+		font.setColor(Color.WHITE);		// color of  font
+		font.draw(game.batch, "x " + game.kirby.getHp(), 100, 450);	// show HP
+		font.draw(game.batch, "Score : " + game.kirby.getScore(), 440, 450);	// show score
 		
+		if(Gdx.input.isKeyJustPressed(Keys.D)){
+			game.kirby.setHp(1);
+		}
+		
+		game.batch.draw(Assets.hp, 40, 425);	// draw HP
+
+		controller.processing();
+		renderer.render();
+		game.enemyController.processing();
+		
+
+		currentBgX -= game.kirby.getSpeed();	// run speed default = 4
+		
+		game.batch.end();		
+		/**** End Render ****/
+
 		/**** Frame rate ****/
 		try {
 			Thread.sleep((long)(1000/60-Gdx.graphics.getDeltaTime()));
