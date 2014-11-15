@@ -1,5 +1,14 @@
 package com.game.object;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.TreeSet;
+
 
 public class Kirby extends ObjectBase {
 	
@@ -7,6 +16,8 @@ public class Kirby extends ObjectBase {
 	private int speed = 4;
 	private int gravity = 7;
 	private int state = 1;
+	private int score = 0;
+//	private int hignScore;
 	private boolean isAction = false;
 	private boolean isAction2 = false;
 	private boolean isActionJump1 = false;
@@ -16,7 +27,6 @@ public class Kirby extends ObjectBase {
 	public static final int STATE_HURT = 3;
 	public static final int STATE_JUMP = 4;
 	public static final int STATE_SPIN = 5;
-//	public static final int STATE_SLIDE = 6;
 	
 	
 	public void setHp(int hp) {
@@ -64,7 +74,7 @@ public class Kirby extends ObjectBase {
 		return isAction;
 	}
 	
-	public void setAction_HurtJump(boolean action){
+	public void setAction_HurtJump(boolean action){ // check bug hurt and jump
 		this.isAction = action;
 	}
 
@@ -72,7 +82,7 @@ public class Kirby extends ObjectBase {
 		// TODO Auto-generated method stub
 		return isAction2;
 	}
-	public void setAction_SpinJump(boolean action){
+	public void setAction_SpinJump(boolean action){	// check bug spin and jump
 		this.isAction2 = action;
 	}
 	
@@ -91,4 +101,52 @@ public class Kirby extends ObjectBase {
 	public void setActionJump2(boolean isActionJump){
 		this.isActionJump2 = isActionJump;
 	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(float f) {
+		this.score += f;
+	}
+
+
+
+	public int HighScore(int hignScore) throws IOException {
+		TreeSet<Integer> score = new TreeSet<Integer>();
+		
+//		File outFile = new File("HighScore.txt");
+//		FileWriter fileWriter = new FileWriter(outFile);
+//		BufferedWriter bufWriter = new BufferedWriter(fileWriter);
+//		
+//		String content = getScore()+"";
+//		System.out.println(content);
+//		bufWriter.write(content); 
+//		bufWriter.newLine(); 
+//		bufWriter.close();
+		
+		try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("HighScore.txt", true)))) {
+		    out.println(getScore());
+		}catch (IOException e) {
+		    //exception handling left as an exercise for the reader
+		}
+		
+		File inFile = new File("HighScore.txt");
+		FileReader fileReader = new FileReader(inFile); 
+		BufferedReader bufReader = new BufferedReader(fileReader); 
+		String line; 
+		while ((line = bufReader.readLine()) != null){
+			score.add(Integer.parseInt(line));
+		}
+		bufReader.close(); //close
+		
+		return (Integer) score.last();
+		
+		
+		
+		
+		
+	}
+	
+
 }

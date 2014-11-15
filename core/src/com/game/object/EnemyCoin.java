@@ -6,6 +6,5 @@ public class EnemyCoin extends Enemy{
 		setWidth(30);
 		setHeight(30);
 		getBounds().setSize(30, 30);
-//		setT
 	}
 }

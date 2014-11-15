@@ -3,12 +3,11 @@ package com.game.controller;
 import java.util.ConcurrentModificationException;
 import java.util.TreeMap;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.game.object.Enemy;
 import com.game.object.EnemyBox;
-import com.game.object.Kirby;
+import com.game.screen.DeathScreen;
 import com.game.screen.GameScreen;
 import com.mygdx.game.Animation2;
 import com.mygdx.game.Assets;
@@ -16,8 +15,9 @@ import com.mygdx.game.GameProject;
 
 public class EnemyController {
 
-	private int y = 100;
+	private int y = 100;	
 	
+	/*** List of Stone ***/
 	private int[][] arrayPosition = {
 			{650, y},
 			{900, y},
@@ -27,6 +27,8 @@ public class EnemyController {
 			{2350, y},
 			{3150, y}
 	};	
+	
+	/*** List of Bird ***/
 	private int[][] arrayPosition2 = {
 			{800,140},
 			{1200,140},
@@ -51,29 +53,45 @@ public class EnemyController {
 		enemyList = new TreeMap<Integer, Enemy>();
 	}
 	
-	public void processing(){
+	public void processing(){		
 		try{
 			for(int id: getEnemy().keySet()){
 				Enemy object = getEnemy().get(id);
 				object.setPosition(object.getPosition().x - game.kirby.getSpeed(), object.getPosition().y);
 				object.setBounds(object.getPosition().x+20, object.getPosition().y, object.getWidth()-20, object.getHeight());
 				
+				/*** Draw Item Plus HP >>> (CandyCane and Strawberry)***/
 				checkOverMap(getEnemy().get(id));
-				if(object.getType() == 8 ){
-//					game.kirby.setHp(game.kirby.getHp()+1);
-//					System.out.println(game.kirby.getHp()+"<---------HP Plus");
-//					System.out.println("---** "+object.getPosition().x+150);
+				if((object.getType() == 8 || object.getType() == 10 ) && !object.isHit_Coin()){	
 					
 					TextureRegion keyFrame = null;
-					keyFrame = Assets.coin.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);
-					game.batch.draw(keyFrame, object.getPosition().x+150, 100,32,32);
-					
-				}		//create coin near bird
+					switch(object.getType()){
+						case 8 : 
+//							keyFrame = Assets.coin.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);
+							game.batch.draw(Assets.candy, object.getPosition().x+180, 100, 32, 32);
+							break;
+						case 10 :
+							keyFrame = Assets.strawberry.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);
+							game.batch.draw(keyFrame, object.getPosition().x+180, 100,32,32);
+					}				
+				}		
 				
-				if( game.kirby.getBounds().overlaps(new Rectangle(object.getPosition().x+150, 100,32,32)) && object.getType() == 8){
+				/*** Check Overlap , If overlap plus HP ***/
+				if( game.kirby.getBounds().overlaps(new Rectangle(object.getPosition().x+150, 100,32,32)) && (object.getType() == 8 || object.getType() == 10) && !object.isHit_Coin()){
+					game.kirby.setHp(game.kirby.getHp()+1);
+					System.out.println(game.kirby.getHp()+" <------ HP Plus");
 					System.out.println("Get coin+++");
 					
+					object.setIsHit_Coin(true);			
+					
 				}
+				
+				/*** Set Screen to Death ***/
+				if(game.kirby.getHp() <= 0){
+					game.setScreen(new DeathScreen(game));
+				}
+				
+				/*** Check overlap, If overlap minus HP and set fade Screen color is Red  ***/
 				if(game.kirby.getBounds().overlaps(object.getBounds()) && !object.isHit() ){
 					// HP
 					game.kirby.setHp(game.kirby.getHp()-1);
@@ -119,7 +137,6 @@ public class EnemyController {
 		}
 	}
 	
-//	boolean chk = false;
 	public void addEnemy(){
 		Enemy object = new EnemyBox();
 		boolean passed = false;
@@ -153,11 +170,13 @@ public class EnemyController {
 			if(chk) passed = true;
 		}while(!passed);
 		
-		if(object.getType() >= 7 && object.getType() <= 12)	 /*check type bird and create*/
+		/*** check type Bird and create ***/
+		if(object.getType() >= 7 && object.getType() <= 12)	 
 			object.setPosition(arrayPosition2[ranPos][0], arrayPosition2[ranPos][1]);
-
+		
+		/*** check type Stone and create ***/
 		else if(object.getType() >= 1 && object.getType() <= 6)
-			object.setPosition(arrayPosition[ranPos][0], /*arrayPosition[ranPos][1]*/ game.kirby.getPosition().x+4);
+			object.setPosition(arrayPosition[ranPos][0],  game.kirby.getPosition().x+4);
 		
 		object.setId(objectId);
 		System.out.println(object.getPosition().x + ", " + object.getPosition().y);

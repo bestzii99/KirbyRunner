@@ -3,7 +3,8 @@ package com.game.object;
 public abstract class Enemy extends ObjectBase {
 	private int type;
 	private boolean isHit = false;
-	public static final int MAX = 12;
+	private boolean isHit_Coin = false;
+	public static final int MAX = 12;	// length Object
 	public static final int STONE_1 = 1;
 	public static final int STONE_2 = 2;
 	public static final int STONE_3 = 3;
@@ -28,6 +29,12 @@ public abstract class Enemy extends ObjectBase {
 	}
 	public void setHit(boolean isHit) {
 		this.isHit = isHit;
+	}
+	public boolean isHit_Coin(){
+		return isHit_Coin;
+	}
+	public void setIsHit_Coin(boolean isHit_Coin){
+		this.isHit_Coin = isHit_Coin;
 	}
 	
 	

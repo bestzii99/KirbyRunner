@@ -30,15 +30,12 @@ public class GameRender {
 				keyFrame = Assets.kirbyDeath.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);
 				break;
 			case Kirby.STATE_HURT:
-//				GameScreen.stateTime = 0f;
 				keyFrame = Assets.kirbyHurt.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);
 				break;
 			case Kirby.STATE_JUMP:
-//				GameScreen.stateTime = 0f;
 				keyFrame = Assets.kirbyJump.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);
 				break;
 			case Kirby.STATE_SPIN:
-//				GameScreen.stateTime = 0f;
 				keyFrame = Assets.kirbySpin.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);
 				break;
 			default:
@@ -67,42 +64,34 @@ public class GameRender {
 					break;
 				case Enemy.STONE_6:
 					game.batch.draw(Assets.stone_6, enemy.getPosition().x, enemy.getPosition().y);
-					break;
-					
-					
-					
+					break;	
 				case Enemy.BIRD_1:
 					keyFrame = Assets.phoenix.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);			
 					game.enemyController.getEnemy().get(id).setBounds(enemy.getPosition().x, enemy.getPosition().y, enemy.getWidth(), enemy.getHeight());
 					game.batch.draw(keyFrame, enemy.getPosition().x, enemy.getPosition().y);
 					break;
 				case Enemy.BIRD_2:
-					keyFrame = Assets.phoenix.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);
-					
+					keyFrame = Assets.phoenix.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);					
 					game.enemyController.getEnemy().get(id).setBounds(enemy.getPosition().x, enemy.getPosition().y, enemy.getWidth(), enemy.getHeight());
 					game.batch.draw(keyFrame, enemy.getPosition().x, enemy.getPosition().y);
 					break;
 				case Enemy.BIRD_3:
-					keyFrame = Assets.bird.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);
-					
+					keyFrame = Assets.bird.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);					
 					game.enemyController.getEnemy().get(id).setBounds(enemy.getPosition().x, enemy.getPosition().y, enemy.getWidth(), enemy.getHeight());
 					game.batch.draw(keyFrame, enemy.getPosition().x, enemy.getPosition().y);
 					break;
 				case Enemy.BIRD_4:
-					keyFrame = Assets.bird.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);
-					
+					keyFrame = Assets.bird.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);					
 					game.enemyController.getEnemy().get(id).setBounds(enemy.getPosition().x, enemy.getPosition().y, enemy.getWidth(), enemy.getHeight());
 					game.batch.draw(keyFrame, enemy.getPosition().x, enemy.getPosition().y);
 					break;
 				case Enemy.BIRD_5:
-					keyFrame = Assets.nyanCat.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);
-					
+					keyFrame = Assets.nyanCat.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);					
 					game.enemyController.getEnemy().get(id).setBounds(enemy.getPosition().x, enemy.getPosition().y, enemy.getWidth(), enemy.getHeight());
 					game.batch.draw(keyFrame, enemy.getPosition().x, enemy.getPosition().y);
 					break;
 				case Enemy.BIRD_6:
-					keyFrame = Assets.nyanCat.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);
-					
+					keyFrame = Assets.nyanCat.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);					
 					game.enemyController.getEnemy().get(id).setBounds(enemy.getPosition().x, enemy.getPosition().y, enemy.getWidth(), enemy.getHeight());
 					game.batch.draw(keyFrame, enemy.getPosition().x, enemy.getPosition().y);
 					break;

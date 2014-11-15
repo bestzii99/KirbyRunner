@@ -22,7 +22,10 @@ public class Assets {
 	public static Texture stone_5;
 	public static Texture stone_6;
 	
-	public static Texture dust;
+	public static Texture hp;
+	
+	public static Texture gameover;
+	public static Texture candy;
 	
 	public static Animation2 kirbyRun;
 	public static Animation2 kirbyDeath;
@@ -30,10 +33,14 @@ public class Assets {
 	public static Animation2 kirbyJump;
 	public static Animation2 kirbySpin;
 	public static Animation2 kirbySlide;
+	
 	public static Animation2 bird;
 	public static Animation2 phoenix;
 	public static Animation2 nyanCat;
+	
 	public static Animation2 coin;
+	public static Animation2 dust;
+	public static Animation2 strawberry;
 	
 	public static TextureRegion loadSprite(String file){
 		return new TextureRegion(new Texture(Gdx.files.internal(file)));
@@ -60,8 +67,10 @@ public class Assets {
 		stone_5 = loadTexture("Object/stone/Stone5.png");
 		stone_6 = loadTexture("Object/stone/Stone6.png");
 		
-		dust = loadTexture("Object/Dust/Dust.png");
+		hp = loadTexture("Object/HP/HP.png");
 		
+		gameover = loadTexture("BG/GameOverr.png");
+		candy = loadTexture("Object/candy/candycane.png");
 		
 		
 		kirbyRun = new Animation2(0.07f,
@@ -151,6 +160,44 @@ public class Assets {
 				loadSprite("Object/coin/Coin5.png"),
 				loadSprite("Object/coin/Coin6.png"),
 				loadSprite("Object/coin/Coin7.png")
+				);
+		
+		dust = new Animation2(0.1f,
+				loadSprite("Object/Dust/Dust1.png"),
+				loadSprite("Object/Dust/Dust2.png"),
+				loadSprite("Object/Dust/Dust3.png"),
+				loadSprite("Object/Dust/Dust4.png"),
+				loadSprite("Object/Dust/Dust5.png"),
+				loadSprite("Object/Dust/Dust6.png")
+				);
+		
+		strawberry = new Animation2(0.01f,
+				loadSprite("Object/Strawberry/1.png"),
+				loadSprite("Object/Strawberry/2.png"),
+				loadSprite("Object/Strawberry/3.png"),
+				loadSprite("Object/Strawberry/4.png"),
+				loadSprite("Object/Strawberry/5.png"),
+				loadSprite("Object/Strawberry/6.png"),
+				loadSprite("Object/Strawberry/7.png"),
+				loadSprite("Object/Strawberry/8.png"),
+				loadSprite("Object/Strawberry/9.png"),
+				loadSprite("Object/Strawberry/10.png"),
+				loadSprite("Object/Strawberry/11.png"),
+				loadSprite("Object/Strawberry/12.png"),
+				loadSprite("Object/Strawberry/13.png"),
+				loadSprite("Object/Strawberry/14.png"),
+				loadSprite("Object/Strawberry/15.png"),
+				loadSprite("Object/Strawberry/16.png"),
+				loadSprite("Object/Strawberry/17.png"),
+				loadSprite("Object/Strawberry/18.png"),
+				loadSprite("Object/Strawberry/19.png"),
+				loadSprite("Object/Strawberry/20.png"),
+				loadSprite("Object/Strawberry/21.png"),
+				loadSprite("Object/Strawberry/22.png"),
+				loadSprite("Object/Strawberry/23.png"),
+				loadSprite("Object/Strawberry/24.png"),
+				loadSprite("Object/Strawberry/25.png"),
+				loadSprite("Object/Strawberry/26.png")
 				);
 	}
 }

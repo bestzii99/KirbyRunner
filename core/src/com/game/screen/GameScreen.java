@@ -1,8 +1,15 @@
 package com.game.screen;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.game.controller.CoinController;
 import com.game.controller.EnemyController;
@@ -10,6 +17,7 @@ import com.game.controller.GameInputProcessing;
 import com.game.controller.GameRender;
 import com.game.object.EnemyBox;
 import com.game.object.Kirby;
+import com.mygdx.game.Animation2;
 import com.mygdx.game.Assets;
 import com.mygdx.game.GameProject;
 
@@ -26,15 +34,21 @@ public class GameScreen extends ScreenBase {
 	
 	GameRender renderer;
 	GameInputProcessing controller;
-	//EnemyController enemyController;
 	
 	public static float stateTime = 0f;
 	
 	Texture bg_1;
 	Texture bg_2;
 	
+	 FileHandle fontFile = Gdx.files.internal("fonts/THSarabun.ttf");
+     FreeTypeFontGenerator generator = new FreeTypeFontGenerator(fontFile);
+     FreeTypeFontParameter param = new FreeTypeFontParameter();
+     BitmapFont font;
 	
-	public GameScreen(GameProject game){
+	public GameScreen(final GameProject game){
+		param.size = 45;
+        param.characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^?.,/\\()&*_+-=;:'\"[]{}";
+        font = generator.generateFont(param);
 		this.game = game;
 		game.kirby = new Kirby();
 		renderer = new GameRender(game);
@@ -45,12 +59,17 @@ public class GameScreen extends ScreenBase {
 		lastTimeBg = TimeUtils.nanoTime();
 		bg_1 = Assets.bg_game_1;
 		bg_2 = Assets.bg_game_1;
+		
+		// count time use fade in-out (if cnt = 20 fade)
 		new Thread(){
 			public void run(){
 				while(true){
 					try {
 						Thread.sleep(1000);
 						cntTime += 1;
+						
+						if(game.kirby.getHp() != 0) game.kirby.setScore(cntTime);
+						
 //						if(cntTime == 14)
 						System.out.println(cntTime);
 						
@@ -63,8 +82,10 @@ public class GameScreen extends ScreenBase {
 		}.start();
 	}
 	
-		
-
+	
+    public void setFont(int size){
+            param.size = size;
+    }
 	
 	public void render(float delta) {
 		Gdx.gl.glClearColor(1, 1, 1, 1);
@@ -72,7 +93,7 @@ public class GameScreen extends ScreenBase {
 		stateTime += Gdx.graphics.getDeltaTime();
 		game.batch.begin();
 		
-			
+		// fade in-out screen background and infinite loop background
 		if(cntTime%20 == 0 && !isChange && cntTime > 0){
 			new Thread(){
 				public void run(){					
@@ -126,12 +147,21 @@ public class GameScreen extends ScreenBase {
 
 		game.batch.draw(bg_1, currentBgX-width, 0, width, height);
 		game.batch.draw(bg_1, currentBgX, 0, width, height);
+		font.setColor(Color.WHITE);		// color of  font
+		font.draw(game.batch, "x " + game.kirby.getHp(), 100, 450);	// show HP
+		font.draw(game.batch, "Score : " + game.kirby.getScore(), 440, 450);	// show score
+		if(Gdx.input.isKeyJustPressed(Keys.D)){
+			game.kirby.setHp(1);
+		}
+		game.batch.draw(Assets.hp, 40, 425);
+		
 		controller.processing();
 		renderer.render();
-//		game.coinController.update();
+
 		game.enemyController.processing();
 		
-		currentBgX -= game.kirby.getSpeed();
+		currentBgX -= game.kirby.getSpeed();	// run speed default = 4
+
 		if(currentBgX == 0){
 			currentBgX = width;
 		}
