@@ -25,6 +25,7 @@ public class GameInputProcessing {
 			game.kirby.setAction_HurtJump(false);
 			game.kirby.setBounds(game.kirby.getPosition().x, game.kirby.getPosition().x, 50, 50);
 			
+			/*** Create Animation dust***/
 			TextureRegion keyFrame = null;
 			keyFrame = Assets.dust.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);
 			game.batch.draw(keyFrame, game.kirby.getPosition().x-35, game.kirby.getPosition().y);
@@ -69,12 +70,9 @@ public class GameInputProcessing {
 		
 		/*** Spin ***/
 		else if(Gdx.input.isKeyPressed(Keys.DOWN) && game.kirby.getState() != Kirby.STATE_JUMP && !game.kirby.isAction2()){	
-			Assets.sound_spin.play();
 			game.kirby.setState(Kirby.STATE_SPIN);
 			game.kirby.setAction_SpinJump(false);
 			game.kirby.setBounds(game.kirby.getPosition().x, game.kirby.getPosition().x, 25, 25);
-		
-		}
-		
+		}	
 	}
 }

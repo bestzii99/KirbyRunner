@@ -1,5 +1,7 @@
 package com.game.screen;
 
+import java.awt.RenderingHints.Key;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.files.FileHandle;
@@ -11,7 +13,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.game.controller.CoinController;
 import com.game.controller.EnemyController;
 import com.game.controller.GameInputProcessing;
 import com.game.controller.GameRender;
@@ -50,7 +51,6 @@ public class GameScreen extends ScreenBase {
 		renderer = new GameRender(game);
 		controller = new GameInputProcessing(game);
 		game.enemyController = new EnemyController(game, this);
-		game.coinController = new CoinController(game);
 
 		this.game = game;
 
@@ -66,24 +66,28 @@ public class GameScreen extends ScreenBase {
 		bg_2 = Assets.bg_game_1;
 
 		/**** Sound Background****/
-//		long id = Assets.sound_bg.play(0.5f);
+//		Assets.sound_bg.dispose();
+//		Assets.sound_bg = Assets.loadBG();
 		Assets.sound_bg.loop();	//Loop
-
-
-
+		game.playing = true;
+		System.out.println("Aaa");
 		/**** count time use fade in-out (if cnt = 20 fade) ****/
 		new Thread(){
 			public void run(){
 
 				while(true){
 					try {
-						Thread.sleep(1000);
-						cntTime += 1;
-
-						if(game.kirby.getHp() != 0) game.kirby.setScore(cntTime);	// add score
-
-						System.out.println(cntTime);
-
+						if(game.playing){
+							Thread.sleep(1000);
+							cntTime += 1;
+	
+							if(game.kirby.getHp() != 0) game.kirby.setScore(cntTime);	// add score
+	
+							System.out.println(cntTime);
+						}else{
+							cntTime = 0;
+//							game.kirby.resetScore();
+						}
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
@@ -92,7 +96,6 @@ public class GameScreen extends ScreenBase {
 			}
 		}.start();
 	}
-
 
 	public void setFont(int size){
 		param.size = size;
@@ -161,10 +164,19 @@ public class GameScreen extends ScreenBase {
 		
 		font.setColor(Color.WHITE);		// color of  font
 		font.draw(game.batch, "x " + game.kirby.getHp(), 100, 450);	// show HP
-		font.draw(game.batch, "Score : " + game.kirby.getScore(), 440, 450);	// show score
+		font.draw(game.batch, "Score : " + game.kirby.getScore(), 435, 450);	// show score
 		
 		if(Gdx.input.isKeyJustPressed(Keys.D)){
-			game.kirby.setHp(1);
+			game.kirby.setHp(0);
+		}
+		
+		if(Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
+			cntTime = 0;
+			game.playing = false;
+			Assets.sound_bg.stop();
+			game.dispose();
+			
+			game.setScreen(new MainMenuScreen(game));
 		}
 		
 		game.batch.draw(Assets.hp, 40, 425);	// draw HP
@@ -173,6 +185,9 @@ public class GameScreen extends ScreenBase {
 		renderer.render();
 		game.enemyController.processing();
 		
+//		if(Gdx.input.isKeyJustPressed(Keys.P)){
+//			gamePause();
+//		}
 
 		currentBgX -= game.kirby.getSpeed();	// run speed default = 4
 		
@@ -188,39 +203,21 @@ public class GameScreen extends ScreenBase {
 	}
 
 	@Override
-	public void resize(int width, int height) {
-		// TODO Auto-generated method stub
-
-	}
+	public void resize(int width, int height) { }
 
 	@Override
-	public void show() {
-		// TODO Auto-generated method stub
-
-	}
+	public void show() { }
 
 	@Override
-	public void hide() {
-		// TODO Auto-generated method stub
-
-	}
+	public void hide() { }
 
 	@Override
-	public void pause() {
-		// TODO Auto-generated method stub
-
-	}
+	public void pause() { }
 
 	@Override
-	public void resume() {
-		// TODO Auto-generated method stub
-
-	}
+	public void resume() { }
 
 	@Override
-	public void dispose() {
-		// TODO Auto-generated method stub
-
-	}
+	public void dispose() { }
 
 }

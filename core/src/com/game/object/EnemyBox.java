@@ -7,6 +7,4 @@ public class EnemyBox extends Enemy{
 		setHeight(45);
 		setType(1+(int)(Math.random()*Enemy.MAX));		//Random Type
 	}
-	
-
 }

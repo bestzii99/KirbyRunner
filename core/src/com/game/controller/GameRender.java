@@ -63,47 +63,32 @@ public class GameRender {
 				case Enemy.BIRD_1:
 					keyFrame = Assets.phoenix.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);			
 					game.enemyController.getEnemy().get(id).setBounds(enemy.getPosition().x, enemy.getPosition().y, enemy.getWidth(), enemy.getHeight());
-					
 					break;
 				case Enemy.BIRD_2:
 					keyFrame = Assets.phoenix.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);					
 					game.enemyController.getEnemy().get(id).setBounds(enemy.getPosition().x, enemy.getPosition().y, enemy.getWidth(), enemy.getHeight());
-					
 					break;
 				case Enemy.BIRD_3:
 					keyFrame = Assets.bird.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);					
 					game.enemyController.getEnemy().get(id).setBounds(enemy.getPosition().x, enemy.getPosition().y, enemy.getWidth(), enemy.getHeight());
-//					game.batch.draw(keyFrame, enemy.getPosition().x, enemy.getPosition().y);
 					break;
 				case Enemy.BIRD_4:
 					keyFrame = Assets.bird.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);					
 					game.enemyController.getEnemy().get(id).setBounds(enemy.getPosition().x, enemy.getPosition().y, enemy.getWidth(), enemy.getHeight());
-//					game.batch.draw(keyFrame, enemy.getPosition().x, enemy.getPosition().y);
 					break;
 				case Enemy.BIRD_5:
 					keyFrame = Assets.nyanCat.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);					
 					game.enemyController.getEnemy().get(id).setBounds(enemy.getPosition().x, enemy.getPosition().y, enemy.getWidth(), enemy.getHeight());
-//					game.batch.draw(keyFrame, enemy.getPosition().x, enemy.getPosition().y);
 					break;
 				case Enemy.BIRD_6:
 					keyFrame = Assets.nyanCat.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);					
 					game.enemyController.getEnemy().get(id).setBounds(enemy.getPosition().x, enemy.getPosition().y, enemy.getWidth(), enemy.getHeight());
-//					game.batch.draw(keyFrame, enemy.getPosition().x, enemy.getPosition().y);
 					break;
-					
 			default:
 				break;
 			}
 			if(keyFrame != null) game.batch.draw(keyFrame, enemy.getPosition().x, enemy.getPosition().y);
 			else if (keyFrame == null)game.batch.draw(texture, enemy.getPosition().x, enemy.getPosition().y);
-		}
-		
-//		
-//		keyFrame = Assets.coin.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);
-//		game.batch.draw(keyFrame, x, 100,32,32);
-//		game.batch.draw(keyFrame, x+40, 100,32,32);
-//		game.batch.draw(keyFrame, x+80, 100,32,32);
-//		game.batch.draw(keyFrame, x+120, 100,32,32);
-//		
+		}		
 	}
 }

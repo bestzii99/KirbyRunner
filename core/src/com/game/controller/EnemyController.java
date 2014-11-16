@@ -67,8 +67,7 @@ public class EnemyController {
 					
 					TextureRegion keyFrame = null;
 					switch(object.getType()){
-						case 8 : 
-//							keyFrame = Assets.coin.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);
+						case 8 :
 							game.batch.draw(Assets.candy, object.getPosition().x+180, 100, 32, 32);
 							break;
 						case 10 :
@@ -80,7 +79,9 @@ public class EnemyController {
 				/*** Check Overlap , If overlap plus HP ***/
 				if( game.kirby.getBounds().overlaps(new Rectangle(object.getPosition().x+150, 100,32,32)) && (object.getType() == 8 || object.getType() == 10) && !object.isHit_Coin()){
 					Assets.sound_hitObject.play();
-					game.kirby.setHp(game.kirby.getHp()+1);
+//					game.kirby.setHp(game.kirby.getHp()+1);
+					game.kirby.setScore(200);
+					System.out.println(game.kirby.getScore()+"<-------- Plus score"); 
 					System.out.println(game.kirby.getHp()+" <------ HP Plus");
 					System.out.println("Get coin+++");
 					
@@ -92,13 +93,13 @@ public class EnemyController {
 				if(game.kirby.getHp() == 0){
 					Gdx.app.log("Status", "Die");
 					Assets.sound_bg.stop();
+					game.playing = false;
 					game.setScreen(new DeathScreen(game));
 				}
 				
 				/*** Check overlap, If overlap minus HP and set fade Screen color is Red  ***/
 				if(game.kirby.getBounds().overlaps(object.getBounds()) && !object.isHit() ){
 					Assets.sound_hurt.play();
-//					Assets.sound_hitObject.dispose();
 					// HP
 					game.kirby.setHp(game.kirby.getHp()-1);
 					System.out.println(game.kirby.getHp() + "<----- HP Minus");
@@ -115,10 +116,7 @@ public class EnemyController {
 									game.batch.setColor(1f,0f,0f,1f);
 									Thread.sleep(20);
 									game.batch.setColor(1f,1f,1f,1f);
-								} catch (InterruptedException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
+								} catch (InterruptedException e) { e.printStackTrace(); }
 								game.batch.setColor(1f,1f,1f,1f);
 							}							
 						}
@@ -128,9 +126,7 @@ public class EnemyController {
 			if(getEnemy().size() < MAX_ENEMY){
 				addEnemy();
 			}
-		}catch(ConcurrentModificationException e){
-			
-		}
+		}catch(ConcurrentModificationException e){ }
 	}
 	
 	public TreeMap<Integer, Enemy> getEnemy(){

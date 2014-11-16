@@ -29,6 +29,26 @@ public class Assets {
 	public static Texture gameover;
 	public static Texture candy;
 	
+	public static Texture aaa;
+	public static Texture welcome;
+	
+	public static Texture play_button_down;
+	public static Texture play_button_up;
+	public static Texture exit_button_down;
+	public static Texture exit_button_up;
+	public static Texture howTo_button_down;
+	public static Texture howTo_button_up;
+	public static Texture highScore_button_down;
+	public static Texture highScore_button_up;
+	public static Texture back_button_down;
+	public static Texture back_button_up;
+	public static Texture howToPlay;
+	public static Texture highScoreScreen;
+	public static Texture restart_button_down;
+	public static Texture restart_button_up;
+	public static Texture mainMenu_button_down;
+	public static Texture mainMenu_button_up;
+	
 	/*** Animation ***/ 
 	public static Animation2 kirbyRun;
 	public static Animation2 kirbyDeath;
@@ -51,6 +71,7 @@ public class Assets {
 	public static Sound sound_hitObject;
 	public static Sound sound_hurt;
 	public static Sound sound_spin;
+	public static Sound sound_ending;
 	
 	public static TextureRegion loadSprite(String file){
 		return new TextureRegion(new Texture(Gdx.files.internal(file)));
@@ -78,10 +99,34 @@ public class Assets {
 		stone_5 = loadTexture("Object/stone/Stone5.png");
 		stone_6 = loadTexture("Object/stone/Stone6.png");
 		
-		hp = loadTexture("Object/HP/HP.png");
+		hp 		= loadTexture("Object/HP/HP.png");
 		
-		gameover = loadTexture("BG/GameOverr.png");
-		candy = loadTexture("Object/candy/candycane.png");
+		gameover	= loadTexture("BG/GameOverr.png");
+		candy		= loadTexture("Object/candy/candycane.png");
+		
+		aaa 		= loadTexture("botton/aaa.jpg");
+		welcome		= loadTexture("Object/mainMenuScreen/Welcome.png");
+		
+		
+		/**** Load Button ****/
+		play_button_down		= loadTexture("Object/mainMenuScreen/Play_Button_Down.png");
+		play_button_up 			= loadTexture("Object/mainMenuScreen/Play_Button_Up.png");
+		exit_button_down		= loadTexture("Object/mainMenuScreen/Exit_Button_Down.png");
+		exit_button_up			= loadTexture("Object/mainMenuScreen/Exit_Button_Up.png");
+		howTo_button_down		= loadTexture("Object/mainMenuScreen/How_To_Button_Down.png");
+		howTo_button_up			= loadTexture("Object/mainMenuScreen/How_To_Button_Up.png");
+		highScore_button_down	= loadTexture("Object/mainMenuScreen/High_Score_Button_Down.png");
+		highScore_button_up		= loadTexture("Object/mainMenuScreen/High_Score_Button_Up.png");
+		back_button_down		= loadTexture("Object/back/Back_Button_Down.png");
+		back_button_up			= loadTexture("Object/back/Back_Button_Up.png");
+		howToPlay				= loadTexture("Object/howToScreen/How_To.png");
+		highScoreScreen			= loadTexture("Object/highScoreScreen/High-Score.png");
+		restart_button_down		= loadTexture("Object/mainMenuScreen/ReStart_Button_Down.png");
+		restart_button_up		= loadTexture("Object/mainMenuScreen/ReStart_Button_Up.png");
+		mainMenu_button_down	= loadTexture("Object/mainMenuScreen/Main_Menu_Button_Down.png");
+		mainMenu_button_up		= loadTexture("Object/mainMenuScreen/Main_Menu_Button_Up.png");
+		
+		
 		
 		
 		kirbyRun = new Animation2(0.07f,
@@ -210,6 +255,12 @@ public class Assets {
 		
 		sound_spin = Gdx.audio.newSound(Gdx.files.internal("sound/Sound_Spin.mp3"));
 		
+		sound_ending =  Gdx.audio.newSound(Gdx.files.internal("sound/Sound_BG.mp3"));
+		
+	}
+	
+	public static Sound loadBG(){
+		return Gdx.audio.newSound(Gdx.files.internal("sound/Sound_BG.mp3"));
 	}
 	/**** End load****/
 	

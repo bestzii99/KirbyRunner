@@ -18,11 +18,12 @@ public class Kirby extends ObjectBase {
 	private int gravity = 7;
 	private int state = 1;
 	private int score = 0;
-//	private int hignScore;
+	
 	private boolean isAction = false;
 	private boolean isAction2 = false;
 	private boolean isActionJump1 = false;
 	private boolean isActionJump2 = false;
+	
 	public static final int STATE_RUN = 1;
 	public static final int STATE_DEATH = 2;
 	public static final int STATE_HURT = 3;
@@ -71,7 +72,6 @@ public class Kirby extends ObjectBase {
 	}
 
 	public boolean isAction() {
-		// TODO Auto-generated method stub
 		return isAction;
 	}
 	
@@ -80,7 +80,6 @@ public class Kirby extends ObjectBase {
 	}
 
 	public boolean isAction2() {
-		// TODO Auto-generated method stub
 		return isAction2;
 	}
 	public void setAction_SpinJump(boolean action){	// check bug spin and jump
@@ -110,6 +109,10 @@ public class Kirby extends ObjectBase {
 	public void setScore(float f) {
 		this.score += f;
 	}
+	
+	public void resetScore(){
+		this.score = 0;
+	}
 
 
 	/**** Function HighScore ****/
@@ -133,8 +136,6 @@ public class Kirby extends ObjectBase {
 		}		
 		bufReader.close(); //close
 		
-		
-		
 		/**** removeLineFromFile ****/
 		Kirby util = new Kirby();
 		if(score.size()>1){
@@ -142,7 +143,6 @@ public class Kirby extends ObjectBase {
 			Kirby.removeLineFromFile("HighScore.txt",lineRemove);
 		}
 		/**** End removeLineFromFile ****/
-		
 		
 		return (Integer) score.last();
 	}
@@ -168,7 +168,6 @@ public class Kirby extends ObjectBase {
 	      while ((line = br.readLine()) != null) {
 	        
 	        if (!line.trim().equals(lineToRemove)) {
-	 
 	          pw.println(line);
 	          pw.flush();
 	        }
@@ -183,16 +182,9 @@ public class Kirby extends ObjectBase {
 	      } 
 	      
 	      //Rename the new file to the filename the original file had.
-	      if (!tempFile.renameTo(inFile))
-	        System.out.println("Could not rename file");
-	      
-	    }
-	    catch (FileNotFoundException ex) {
-	      ex.printStackTrace();
-	    }
-	    catch (IOException ex) {
-	      ex.printStackTrace();
-	    }
+	    if (!tempFile.renameTo(inFile)) System.out.println("Could not rename file"); }
+	    catch (FileNotFoundException ex) {  ex.printStackTrace(); }
+	    catch (IOException ex) { ex.printStackTrace(); }
 	  }
 	
 
