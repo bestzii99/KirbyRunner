@@ -23,7 +23,6 @@ public class HighScoreScreen extends ScreenBase {
 	FreeTypeFontParameter param = new FreeTypeFontParameter();
 	BitmapFont font;
 	
-	
 	public HighScoreScreen(GameProject game) {
 		super();
 		this.game = game;
@@ -33,9 +32,6 @@ public class HighScoreScreen extends ScreenBase {
 		param.size = 80;
 		param.characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^?.,/\\()&*_+-=;:'\"[]{}";
 		font = generator.generateFont(param);
-		
-		
-		
 	}
 
 	@Override
@@ -56,11 +52,8 @@ public class HighScoreScreen extends ScreenBase {
 		controller.update();
 		game.batch.end();
 		
-		
 		System.out.println(Gdx.input.getX()+ ", " +Gdx.input.getY());		// x,y rectangle
 //		System.out.println(Gdx.input.getX()+ ", " +(480-(Gdx.input.getY()))); 		// x,y texture
-		
-		
 
 	}
 

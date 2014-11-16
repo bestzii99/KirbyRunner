@@ -8,11 +8,8 @@ import com.mygdx.game.GameProject;
 public class HowToPlayScreen extends ScreenBase{
 	
 	GameProject game;
-	public Rectangle back;
-	
 	HowToPlayController controller;
-	
-
+	public Rectangle back;
 	
 	public HowToPlayScreen(GameProject game){
 		this.game = game;

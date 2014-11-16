@@ -66,8 +66,6 @@ public class GameScreen extends ScreenBase {
 		bg_2 = Assets.bg_game_1;
 
 		/**** Sound Background****/
-//		Assets.sound_bg.dispose();
-//		Assets.sound_bg = Assets.loadBG();
 		Assets.sound_bg.loop();	//Loop
 		game.playing = true;
 		System.out.println("Aaa");
@@ -95,18 +93,77 @@ public class GameScreen extends ScreenBase {
 			}
 		}.start();
 	}
-
-	public void setFont(int size){
-		param.size = size;
-	}
-
+	
 	public void render(float delta) {
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		stateTime += Gdx.graphics.getDeltaTime();
+		
 		game.batch.begin();
+		backgroundLoop(); 	// fade in-out screen background and infinite loop background 
+		show();
+		
+		if(Gdx.input.isKeyJustPressed(Keys.D)) game.kirby.setHp(0);
+		
+		if(Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
+			cntTime = 0;
+			game.playing = false;
+			Assets.sound_bg.stop();
+			game.setScreen(new MainMenuScreen(game));
+		}
+		
+		controller.processing();
+		renderer.render();
+		game.enemyController.processing();
+		game.batch.end(); // batch end
 
-		/**** fade in-out screen background and infinite loop background ****/
+		/**** Frame rate ****/
+		frameRate();
+	}
+	
+	
+	
+	
+
+	@Override
+	public void resize(int width, int height) { }
+
+	@Override
+	public void show() {
+		/**** Draw Background****/ 
+		game.batch.draw(bg_1, currentBgX-width, 0, width, height);
+		game.batch.draw(bg_1, currentBgX, 0, width, height);
+		
+		font.setColor(Color.WHITE);		// color of  font
+		font.draw(game.batch, "x " + game.kirby.getHp(), 100, 450);	// show HP
+		font.draw(game.batch, "Score : " + game.kirby.getScore(), 435, 450);	// show score
+	}
+
+	@Override
+	public void hide() { }
+
+	@Override
+	public void pause() { }
+
+	@Override
+	public void resume() { }
+
+	@Override
+	public void dispose() { }
+	
+	private void frameRate(){
+		try {
+			Thread.sleep((long)(1000/60-Gdx.graphics.getDeltaTime()));
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void setFont(int size){
+		param.size = size;
+	}
+	
+	private void backgroundLoop(){
 		if(cntTime%20 == 0 && !isChange && cntTime > 0){
 			new Thread(){
 				public void run(){					
@@ -125,98 +182,31 @@ public class GameScreen extends ScreenBase {
 							Thread.sleep(100);
 							fade_out += 0.1f;
 						}					
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
+					} catch (InterruptedException e) {}
 					isChange = false;
 				}
 			}.start();
 			isChange = true;
-		}else if (cntTime == 1){
-			bg_1 = Assets.bg_game_1;
-		}else if (cntTime == 21){
-			bg_1 = Assets.bg_game_2;			
-		}else if(cntTime == 41){
-			bg_1 = Assets.bg_game_3;
-		}else if(cntTime == 61){
-			bg_1 = Assets.bg_game_4;
-		}else if(cntTime == 81){
-			bg_1 = Assets.bg_game_5;
-		}else if(cntTime == 101){
-			bg_1 = Assets.bg_game_6;
-		}else if(cntTime == 121){
-			bg_1 = Assets.bg_game_7;
-		}else if(cntTime == 141){
-			bg_1 = Assets.bg_game_8;
-		}else if(cntTime == 161){
-			cntTime = 1;
 		}
-
-		/**** Draw Background****/ 
-		game.batch.draw(bg_1, currentBgX-width, 0, width, height);
-		game.batch.draw(bg_1, currentBgX, 0, width, height);
+		switch (cntTime) {
+			case 1: bg_1 = Assets.bg_game_1; break;
+			case 21: bg_1 = Assets.bg_game_2; break;
+			case 41: bg_1 = Assets.bg_game_3; break;
+			case 61: bg_1 = Assets.bg_game_4; break;
+			case 81: bg_1 = Assets.bg_game_5; break;
+			case 101: bg_1 = Assets.bg_game_6; break;
+			case 121: bg_1 = Assets.bg_game_7; break;
+			case 141: bg_1 = Assets.bg_game_8; break;
+			case 161: cntTime = 1; break;
+		}
 		
 		/****  Check Infinite Loop Backround ****/
-		if(currentBgX == 0){
-			currentBgX = width;
-		}
+		if(currentBgX == 0) currentBgX = width;
 		
-		font.setColor(Color.WHITE);		// color of  font
-		font.draw(game.batch, "x " + game.kirby.getHp(), 100, 450);	// show HP
-		font.draw(game.batch, "Score : " + game.kirby.getScore(), 435, 450);	// show score
-		
-		if(Gdx.input.isKeyJustPressed(Keys.D)){
-			game.kirby.setHp(0);
-		}
-		
-		if(Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
-			cntTime = 0;
-			game.playing = false;
-			Assets.sound_bg.stop();
-			game.dispose();
-			
-			game.setScreen(new MainMenuScreen(game));
-		}
-		
-		game.batch.draw(Assets.hp, 40, 425);	// draw HP
-
-		controller.processing();
-		renderer.render();
-		game.enemyController.processing();
-		
-//		if(Gdx.input.isKeyJustPressed(Keys.P)){
-//			gamePause();
-//		}
-
 		currentBgX -= game.kirby.getSpeed();	// run speed default = 4
-		
-		game.batch.end();		
-		/**** End Render ****/
-
-		/**** Frame rate ****/
-		try {
-			Thread.sleep((long)(1000/60-Gdx.graphics.getDeltaTime()));
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 	}
+	
 
-	@Override
-	public void resize(int width, int height) { }
-
-	@Override
-	public void show() { }
-
-	@Override
-	public void hide() { }
-
-	@Override
-	public void pause() { }
-
-	@Override
-	public void resume() { }
-
-	@Override
-	public void dispose() { }
+	
 
 }

@@ -20,6 +20,7 @@ public class GameRender {
 
 	public void render(){
 		TextureRegion keyFrame = null;
+		game.batch.draw(Assets.hp, 40, 425);	// draw HP
 		
 		switch (game.kirby.getState()) {
 			case Kirby.STATE_RUN:

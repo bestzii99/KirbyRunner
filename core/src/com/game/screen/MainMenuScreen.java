@@ -14,7 +14,8 @@ public class MainMenuScreen extends ScreenBase {
 	int width = 1200;
 	int height = 570;
 	boolean isChange = false;
-	int cntTime = 0;	
+	int cntTime = 0;
+	
 	Texture bg_1;
 	Texture bg_2;
 	
@@ -84,10 +85,10 @@ public class MainMenuScreen extends ScreenBase {
 		game.batch.draw(keyFrame, 320-30, 100);
 		
 
-		fade();
+		fade(); // fade in-out screen background and infinite loop background
 		controller.update();
 		
-		/****  Check Infinite Loop Backround ****/
+		/****  Check Infinite Loop Background ****/
 		if(currentBgX == 0)currentBgX = width;
 		currentBgX -= 4;	// run speed default = 4
 		
@@ -97,10 +98,11 @@ public class MainMenuScreen extends ScreenBase {
 		frameRate();
 
 	}
-	/**
-	 *  Frame rate
-	 */
+	
 	public void frameRate(){
+		/**
+		 *  Frame rate
+		 */
 		try {
 			Thread.sleep((long)(1000/60-Gdx.graphics.getDeltaTime()));
 		} catch (InterruptedException e) {

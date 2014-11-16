@@ -118,7 +118,6 @@ public class Kirby extends ObjectBase {
 	/**** Function HighScore ****/
 	public int HighScore(int hignScore) throws IOException {
 		TreeSet<Integer> score = new TreeSet<Integer>();
-
 		
 		try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("HighScore.txt", true)))) {
 		    out.println(getScore());
