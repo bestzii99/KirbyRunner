@@ -15,11 +15,10 @@ public class HowToPlayController {
 		this.game = game;
 		this.howToPlayScreen = howToPlayScreen;
 		pointer = new Rectangle();
-		
 	}
+	
 	public void update(){
 		pointer.set(Gdx.input.getX(), Gdx.input.getY(), 2, 2);
-		
 		if(pointer.overlaps(howToPlayScreen.back)){
 			game.batch.draw(Assets.back_button_down,10,10,100,95);
 			if(Gdx.input.isButtonPressed(0)){

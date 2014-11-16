@@ -25,6 +25,9 @@ import com.mygdx.game.GameProject;
 public class GameScreen extends ScreenBase {
 
 	GameProject game;
+	GameRender renderer;
+	GameInputProcessing controller;
+	
 	float currentBgX;
 	long lastTimeBg;
 	int width = 1200;
@@ -32,9 +35,6 @@ public class GameScreen extends ScreenBase {
 	int cntTime = 0;
 	float fadeTime = 1.0f;
 	boolean isChange = false;
-
-	GameRender renderer;
-	GameInputProcessing controller;
 
 	public static float stateTime = 0f;
 
@@ -85,8 +85,7 @@ public class GameScreen extends ScreenBase {
 	
 							System.out.println(cntTime);
 						}else{
-							cntTime = 0;
-//							game.kirby.resetScore();
+							cntTime = 0; // reset score
 						}
 					} catch (InterruptedException e) {
 						e.printStackTrace();

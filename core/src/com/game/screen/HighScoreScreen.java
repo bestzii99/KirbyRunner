@@ -1,5 +1,7 @@
 package com.game.screen;
 
+import java.io.IOException;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -46,11 +48,12 @@ public class HighScoreScreen extends ScreenBase {
 		font.setColor(Color.PURPLE);
 		
 		System.out.println(Gdx.input.getX()+ ", " +(480-Gdx.input.getY()));
-		font.draw(game.batch, "9999999", 280, 265);
+
+		
+		try { font.draw(game.batch,""+game.kirby.HighScore(game.kirby.getScore()), 280, 265); } 
+		catch (IOException e) { e.printStackTrace(); }
 		
 		controller.update();
-		
-		
 		game.batch.end();
 		
 		

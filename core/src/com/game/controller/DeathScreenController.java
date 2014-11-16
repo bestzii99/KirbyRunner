@@ -24,25 +24,25 @@ public class DeathScreenController {
 	public void update(){
 		pointer.set(Gdx.input.getX(), Gdx.input.getY(), 2, 2);
 		if(pointer.overlaps(deathScreen.restart)){
-			game.batch.draw(Assets.restart_button_down,10, 15);
+			game.batch.draw(Assets.restart_button_down, -65, 0);
 			if(Gdx.input.isButtonPressed(0)){
-				game.dispose();
+				dispose();
 				game.setScreen(new GameScreen(game));
-				Assets.sound_ending.dispose();
 				
 			}
 		}else if(pointer.overlaps(deathScreen.restartToMainMenu)){
+			game.batch.draw(Assets.mainMenu_button_down, 370, 0);
 			if(Gdx.input.isButtonPressed(0)){
-				game.dispose();
 				try {Thread.sleep(100);} catch (InterruptedException e) {}
+				dispose();
 				game.setScreen(new MainMenuScreen(game));
-				Assets.sound_death.dispose();
-				game.dispose();
-				
-
-
 			}
 		}
+	}
+	
+	private void dispose(){
+		game.dispose();
+		Assets.sound_ending.dispose();
 	}
 
 }

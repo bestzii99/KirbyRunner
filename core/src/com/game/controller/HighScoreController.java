@@ -11,12 +11,13 @@ public class HighScoreController {
 	GameProject game;
 	HighScoreScreen highScoreScreen;
 	Rectangle pointer;
+	
 	public HighScoreController(GameProject game, HighScoreScreen highScoreScreen){
 		this.game = game;
 		this.highScoreScreen = highScoreScreen;
 		pointer = new Rectangle();
-		
 	}
+	
 	public void update(){
 		pointer.set(Gdx.input.getX(), Gdx.input.getY(), 2, 2);
 		if(pointer.overlaps(highScoreScreen.backToMainMenu)){
