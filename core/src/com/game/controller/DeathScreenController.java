@@ -17,9 +17,9 @@ public class DeathScreenController {
 	Rectangle pointer;
 	
 	public DeathScreenController(GameProject game, DeathScreen deathScreen){
+		pointer = new Rectangle();
 		this.game = game;
 		this.deathScreen = deathScreen;
-		pointer = new Rectangle();
 	}
 	public void update(){
 		pointer.set(Gdx.input.getX(), Gdx.input.getY(), 2, 2);
@@ -28,7 +28,6 @@ public class DeathScreenController {
 			if(Gdx.input.isButtonPressed(0)){
 				dispose();
 				game.setScreen(new GameScreen(game));
-				
 			}
 		}else if(pointer.overlaps(deathScreen.restartToMainMenu)){
 			game.batch.draw(Assets.mainMenu_button_down, 370, 0);

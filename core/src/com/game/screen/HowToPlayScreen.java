@@ -9,6 +9,7 @@ public class HowToPlayScreen extends ScreenBase{
 	
 	GameProject game;
 	HowToPlayController controller;
+	
 	public Rectangle back;
 	
 	public HowToPlayScreen(GameProject game){
@@ -20,8 +21,11 @@ public class HowToPlayScreen extends ScreenBase{
 	@Override
 	public void render(float delta) { 
 		game.batch.begin();
+		
+		// draw HowToPlay Screen and Button Back
 		game.batch.draw(Assets.howToPlay,0,0);
 		game.batch.draw(Assets.back_button_up,10,10,100,95);
+		
 		controller.update();
 		game.batch.end();
 	}
@@ -30,7 +34,9 @@ public class HowToPlayScreen extends ScreenBase{
 	public void resize(int width, int height) { }
 
 	@Override
-	public void show() { }
+	public void show() {
+		
+	}
 
 	@Override
 	public void hide() { }

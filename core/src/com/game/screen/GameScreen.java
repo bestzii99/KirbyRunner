@@ -101,7 +101,14 @@ public class GameScreen extends ScreenBase {
 		
 		game.batch.begin();
 		backgroundLoop(); 	// fade in-out screen background and infinite loop background 
-		show();
+
+		/**** Draw Background****/ 
+		game.batch.draw(bg_1, currentBgX-width, 0, width, height);
+		game.batch.draw(bg_1, currentBgX, 0, width, height);
+		
+		font.setColor(Color.WHITE);		// color of  font
+		font.draw(game.batch, "x " + game.kirby.getHp(), 100, 450);	// show HP
+		font.draw(game.batch, "Score : " + game.kirby.getScore(), 435, 450);	// show score
 		
 		if(Gdx.input.isKeyJustPressed(Keys.D)) game.kirby.setHp(0);
 		
@@ -121,35 +128,23 @@ public class GameScreen extends ScreenBase {
 		frameRate();
 	}
 	
-	
-	
-	
-
 	@Override
 	public void resize(int width, int height) { }
 
 	@Override
-	public void show() {
-		/**** Draw Background****/ 
-		game.batch.draw(bg_1, currentBgX-width, 0, width, height);
-		game.batch.draw(bg_1, currentBgX, 0, width, height);
-		
-		font.setColor(Color.WHITE);		// color of  font
-		font.draw(game.batch, "x " + game.kirby.getHp(), 100, 450);	// show HP
-		font.draw(game.batch, "Score : " + game.kirby.getScore(), 435, 450);	// show score
-	}
+	public void show() {}
 
 	@Override
-	public void hide() { }
+	public void hide() {}
 
 	@Override
-	public void pause() { }
+	public void pause() {}
 
 	@Override
-	public void resume() { }
+	public void resume() {}
 
 	@Override
-	public void dispose() { }
+	public void dispose() {}
 	
 	private void frameRate(){
 		try {

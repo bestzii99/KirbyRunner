@@ -8,9 +8,9 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
  
 public abstract class ScreenBase implements Screen{
-        FileHandle fontFile = Gdx.files.internal("fonts/THSarabun.ttf");
+        FileHandle fontFile 			= Gdx.files.internal("fonts/THSarabun.ttf");
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(fontFile);
-        FreeTypeFontParameter param = new FreeTypeFontParameter();
+        FreeTypeFontParameter param 	= new FreeTypeFontParameter();
         BitmapFont font;
        
         public ScreenBase(){

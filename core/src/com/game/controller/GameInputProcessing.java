@@ -44,20 +44,14 @@ public class GameInputProcessing {
 			new Thread(){
 				public void run(){
 					for(int i = 1; i<=20; i++){
-						try {
-							Thread.sleep(20);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
+						try { Thread.sleep(20); } 
+						catch (InterruptedException e) { e.printStackTrace(); }
 						game.kirby.setPosition(game.kirby.getPosition().x, game.kirby.getPosition().y+game.kirby.getGravity());
 						game.kirby.setBounds(game.kirby.getPosition().x, game.kirby.getPosition().y, Kirby.getWidth(), Kirby.getHeight());
 					}
 					for(int i=1; i<=20; i++){
-						try {
-							Thread.sleep(20); 
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
+						try { Thread.sleep(20); } 
+						catch (InterruptedException e) { e.printStackTrace(); }
 						game.kirby.setPosition(game.kirby.getPosition().x, game.kirby.getPosition().y-game.kirby.getGravity());
 						game.kirby.setBounds(game.kirby.getPosition().x, game.kirby.getPosition().y, Kirby.getWidth(), Kirby.getHeight());
 					}

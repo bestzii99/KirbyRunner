@@ -14,6 +14,7 @@ public class MainMenuController {
 	GameProject game;
 	MainMenuScreen mainMenuScreen;
 	Rectangle pointer;
+	
 	public MainMenuController(GameProject game, MainMenuScreen screen){
 		this.game = game;
 		this.mainMenuScreen = screen;

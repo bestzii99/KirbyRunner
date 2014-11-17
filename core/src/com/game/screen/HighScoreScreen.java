@@ -1,5 +1,9 @@
 package com.game.screen;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 
 import com.badlogic.gdx.Gdx;
@@ -37,23 +41,21 @@ public class HighScoreScreen extends ScreenBase {
 	@Override
 	public void render(float delta) {
 		game.batch.begin();
-		game.batch.draw(Assets.bg_game_5,0,0,640,480);
+		
+		// draw Background, Back Button and HighScore 
 		game.batch.draw(Assets.highScoreScreen, 0, 0);
 		game.batch.draw(Assets.back_button_up, 10, 10, 100, 95);
-		
-		font.setColor(Color.PURPLE);
-		
-		System.out.println(Gdx.input.getX()+ ", " +(480-Gdx.input.getY()));
 
-		
-		try { font.draw(game.batch,""+game.kirby.HighScore(game.kirby.getScore()), 280, 265); } 
+		font.setColor(Color.PURPLE);
+		// read HighScore from highScore.txt
+		try { font.draw(game.batch,showHighScore(), 280, 265); } 
 		catch (IOException e) { e.printStackTrace(); }
 		
 		controller.update();
 		game.batch.end();
 		
-		System.out.println(Gdx.input.getX()+ ", " +Gdx.input.getY());		// x,y rectangle
-//		System.out.println(Gdx.input.getX()+ ", " +(480-(Gdx.input.getY()))); 		// x,y texture
+//		System.out.println(Gdx.input.getX()+ ", " +Gdx.input.getY()+"   << x,y rectangle");		// x,y rectangle
+//		System.out.println(Gdx.input.getX()+ ", " +(480-(Gdx.input.getY()))+"    << x,y texture"); 		// x,y texture
 
 	}
 
@@ -61,7 +63,7 @@ public class HighScoreScreen extends ScreenBase {
 	public void resize(int width, int height) { }
 
 	@Override
-	public void show() { }
+	public void show() {}
 
 	@Override
 	public void hide() { }
@@ -76,5 +78,14 @@ public class HighScoreScreen extends ScreenBase {
 	public void dispose() { }
 	
 	public void setFont(int size){ param.size = size; }
+	
+	private String showHighScore() throws IOException{
+		File inFile = new File("HighScore.txt");
+		FileReader fileReader = new FileReader(inFile); 
+		BufferedReader bufReader = new BufferedReader(fileReader); 
+		String line = bufReader.readLine(); 	
+		bufReader.close();
+		return line;
+	}
 
 }

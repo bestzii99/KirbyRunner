@@ -54,17 +54,7 @@ public class DeathScreen extends ScreenBase {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
 		game.batch.begin();
-		show();
-		contraller.update();
-		game.batch.end();
-		
-	}
 
-	@Override
-	public void resize(int width, int height) { }
-
-	@Override
-	public void show() {
 		font.setColor(Color.BLACK);
 		game.batch.draw(Assets.gameover, 0, 0, 640, 480);
 		game.batch.draw(Assets.restart_button_up, -65, 0);	// draw button restart
@@ -75,19 +65,29 @@ public class DeathScreen extends ScreenBase {
 			font.draw(game.batch, "High Score : " + game.kirby.HighScore(game.kirby.getScore()), 160, 150) ;
 		} catch (IOException e) { e.printStackTrace(); }
 		font.draw(game.batch, "Score : " + game.kirby.getScore(), 250, 100);
+		
+		contraller.update();
+		game.batch.end();
+		
 	}
 
 	@Override
-	public void hide() { }
+	public void resize(int width, int height) {}
 
 	@Override
-	public void pause() { }
+	public void show() {}
 
 	@Override
-	public void resume() { }
+	public void hide() {}
 
 	@Override
-	public void dispose() { }
+	public void pause() {}
+
+	@Override
+	public void resume() {}
+
+	@Override
+	public void dispose() {}
 
 
 }

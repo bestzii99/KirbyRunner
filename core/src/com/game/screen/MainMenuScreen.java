@@ -10,17 +10,10 @@ import com.mygdx.game.Assets;
 import com.mygdx.game.GameProject;
 
 public class MainMenuScreen extends ScreenBase {
-	float currentBgX;
-	int width = 1200;
-	int height = 570;
-	boolean isChange = false;
-	int cntTime = 0;
-	
-	Texture bg_1;
-	Texture bg_2;
-	
 	GameProject game;
 	MainMenuController controller;
+	Texture bg_1;
+	Texture bg_2;
 	
 	public Rectangle startGame;
 	public Rectangle gameName;
@@ -28,6 +21,12 @@ public class MainMenuScreen extends ScreenBase {
 	public Rectangle exit;
 	public Rectangle howToPlay;
 	private float stateTime;
+	float currentBgX;
+	
+	int width = 1200;
+	int height = 570;
+	boolean isChange = false;
+	int cntTime = 0;
 	
 	public MainMenuScreen(final GameProject game){
 		this.game = game;
@@ -49,14 +48,13 @@ public class MainMenuScreen extends ScreenBase {
 		controller = new MainMenuController(game, this);
 		
 		/**
-		 * 
 		 * create button
 		 */
-		gameName = new Rectangle(220, 20, 200, 70); 
-		startGame = new Rectangle(220, 180, 200, 50);
-		howToPlay = new Rectangle(220, 260, 200, 50);
-		highScore = new Rectangle(220, 400, 200, 50);
-		exit = new Rectangle(520, 400, 200, 50);		
+		gameName 	= new Rectangle(220, 20, 200, 70); 
+		startGame	= new Rectangle(220, 180, 200, 50);
+		howToPlay 	= new Rectangle(220, 260, 200, 50);
+		highScore 	= new Rectangle(220, 400, 200, 50);
+		exit 		= new Rectangle(520, 400, 200, 50);		
 	}
 
 	@Override
@@ -65,6 +63,7 @@ public class MainMenuScreen extends ScreenBase {
 		stateTime += Gdx.graphics.getDeltaTime();
 		
 //		System.out.println(Gdx.input.getX()+ ", " +Gdx.input.getY());
+		System.out.println(Gdx.input.getX()+ ", " +(480-(Gdx.input.getY()))); 		// x,y texture
 		
 		game.batch.begin();
 		
@@ -78,25 +77,20 @@ public class MainMenuScreen extends ScreenBase {
 		game.batch.draw(Assets.howTo_button_up, 170, 170);					// label 3, How To Play				
 		game.batch.draw(Assets.highScore_button_up, 170, 25);				// label 4 High Score
 		game.batch.draw(Assets.exit_button_up, 520, 35, 50, 50);			// label 4.1 Exit
-
-		System.out.println(Gdx.input.getX()+ ", " +(480-(Gdx.input.getY()))); 		// x,y texture
 		
 		keyFrame = Assets.kirbyRun.getKeyFrame(stateTime, Animation2.ANIMATION_LOOPING);
 		game.batch.draw(keyFrame, 320-30, 100);
 		
-
 		fade(); // fade in-out screen background and infinite loop background
-		controller.update();
 		
 		/****  Check Infinite Loop Background ****/
 		if(currentBgX == 0)currentBgX = width;
 		currentBgX -= 4;	// run speed default = 4
 		
-		game.batch.end();		
-		/**** End Render ****/
-
+		controller.update();
+		game.batch.end();	// batch end	
+	
 		frameRate();
-
 	}
 	
 	public void frameRate(){
@@ -110,31 +104,30 @@ public class MainMenuScreen extends ScreenBase {
 		}
 	}
 
+	@Override
+	public void resize(int width, int height) {}
 
+	@Override
+	public void show() {}
+
+	@Override
+	public void hide() {}
+
+	@Override
+	public void pause() {}
+
+	@Override
+	public void resume() {}
+
+	@Override
+	public void dispose() {}
 	
-
-	@Override
-	public void resize(int width, int height) { }
-
-	@Override
-	public void show() { }
-
-	@Override
-	public void hide() { }
-
-	@Override
-	public void pause() { }
-
-	@Override
-	public void resume() { }
-
-	@Override
-	public void dispose() { }
 	
-	/**
-	 *  fade in-out screen background and infinite loop background
-	 */
 	public void fade(){
+		/**
+		 *  fade in-out screen background and infinite loop background
+		 */
+		
 		if(cntTime%20 == 0 && !isChange && cntTime > 0){
 			new Thread(){
 				public void run(){					

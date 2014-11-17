@@ -9,10 +9,10 @@ import com.game.screen.GameScreen;
 import com.game.screen.MainMenuScreen;
 
 public class GameProject extends Game implements ApplicationListener {
-	public boolean playing = false;
 	public SpriteBatch batch;
 	public Kirby kirby;
 	public EnemyController enemyController;
+	public boolean playing = false;
 
 	public void create () {
 		batch = new SpriteBatch();

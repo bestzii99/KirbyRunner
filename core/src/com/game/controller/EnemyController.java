@@ -15,38 +15,37 @@ import com.mygdx.game.Assets;
 import com.mygdx.game.GameProject;
 
 public class EnemyController {
-
-	private int y = 100;	
-	
-	/*** List of Stone ***/
-	private int[][] arrayPosition = {
-			{650, y},
-			{900, y},
-			{1300, y},
-			{1650, y},
-			{2050, y},
-			{2350, y},
-			{3150, y}
-	};	
-	
-	/*** List of Bird ***/
-	private int[][] arrayPosition2 = {
-			{800,140},
-			{1200,140},
-			{1450,140},
-			{1850,140},
-			{2200,140},
-			{2400,140},
-			{3000,140}
-			};	
-	
-	private TreeMap<Integer, Enemy> enemyList;
 	GameProject game;
 	GameScreen screen;
-
+	
+	private TreeMap<Integer, Enemy> enemyList;
+	private int y_stone = 100;
+	private int y_bird = 140;
 	private int objectId = 1;
 	private int cntEnemy = 0;
 	private final int MAX_ENEMY = 4;
+	
+	/*** List of Stone ***/
+	private int[][] arrayPosition = {
+										{650, y_stone},
+										{900, y_stone},
+										{1300, y_stone},
+										{1650, y_stone},
+										{2050, y_stone},
+										{2350, y_stone},
+										{3150, y_stone}
+									};	
+	
+	/*** List of Bird ***/
+	private int[][] arrayPosition2 = {
+										{800,y_bird},
+										{1200,y_bird},
+										{1450,y_bird},
+										{1850,y_bird},
+										{2200,y_bird},
+										{2400,y_bird},
+										{3000,y_bird}
+									};	
 	
 	public EnemyController(GameProject game, GameScreen screen){
 		this.game = game;
@@ -100,18 +99,16 @@ public class EnemyController {
 				/*** Check overlap, If overlap minus HP and set fade Screen color is Red  ***/
 				if(game.kirby.getBounds().overlaps(object.getBounds()) && !object.isHit() ){
 					Assets.sound_hurt.play();
-					// HP
-					game.kirby.setHp(game.kirby.getHp()-1);
+					
+					game.kirby.setHp(game.kirby.getHp()-1);			// Minus HP
 					System.out.println(game.kirby.getHp() + "<----- HP Minus");
 					
-					// OverLap					
-					System.out.println("Overlap!");
+					System.out.println("Overlap!");	// OverLap	
 					
 					object.setHit(true);
 					new Thread(){
 						public void run(){
 							for(int i=0;i<4;i++){
-								
 								try {
 									game.batch.setColor(1f,0f,0f,1f);
 									Thread.sleep(20);
@@ -134,9 +131,7 @@ public class EnemyController {
 	}
 	
 	private void checkOverMap (Enemy object){
-		if(object.getPosition().x <= -150){
-			removeEnemy(object.getId());
-		}
+		if(object.getPosition().x <= -150) removeEnemy(object.getId()); 
 	}
 	
 	public void addEnemy(){
