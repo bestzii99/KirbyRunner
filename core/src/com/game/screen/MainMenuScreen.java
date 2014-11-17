@@ -54,7 +54,7 @@ public class MainMenuScreen extends ScreenBase {
 		startGame	= new Rectangle(220, 180, 200, 50);
 		howToPlay 	= new Rectangle(220, 260, 200, 50);
 		highScore 	= new Rectangle(220, 400, 200, 50);
-		exit 		= new Rectangle(520, 400, 200, 50);		
+		exit 		= new Rectangle(540, 400, 200, 50);		
 	}
 
 	@Override
@@ -72,11 +72,11 @@ public class MainMenuScreen extends ScreenBase {
 		game.batch.draw(bg_1, currentBgX, 0, width, height);
 		
 		/*** create button ***/
-		game.batch.draw(Assets.aaa, 220, 380, 200, 70);						// label 1, Project Name			
+		game.batch.draw(Assets.logo, 213, 325/*, 200, 70*/);						// label 1, Project Name			
 		game.batch.draw(Assets.play_button_up, 170, 250);					// label 2, Play			
 		game.batch.draw(Assets.howTo_button_up, 170, 170);					// label 3, How To Play				
 		game.batch.draw(Assets.highScore_button_up, 170, 25);				// label 4 High Score
-		game.batch.draw(Assets.exit_button_up, 520, 35, 50, 50);			// label 4.1 Exit
+		game.batch.draw(Assets.exit_button_up, 540, 35, 50, 50);			// label 4.1 Exit
 		
 		keyFrame = Assets.kirbyRun.getKeyFrame(stateTime, Animation2.ANIMATION_LOOPING);
 		game.batch.draw(keyFrame, 320-30, 100);

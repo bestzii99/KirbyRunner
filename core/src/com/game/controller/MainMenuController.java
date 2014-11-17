@@ -1,7 +1,9 @@
 package com.game.controller;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.math.Rectangle;
+import com.game.screen.CreditScreen;
 import com.game.screen.GameScreen;
 import com.game.screen.HighScoreScreen;
 import com.game.screen.HowToPlayScreen;
@@ -39,10 +41,12 @@ public class MainMenuController {
 				game.setScreen(new HighScoreScreen(game));
 			}
 		}else if(pointer.overlaps(mainMenuScreen.exit)){
-			game.batch.draw(Assets.exit_button_down,520 ,35);
+			game.batch.draw(Assets.exit_button_down,540 ,35);
 			if(Gdx.input.isButtonPressed(0)){
 				Gdx.app.exit();
 			}
+		}else if(Gdx.input.isKeyJustPressed(Keys.C)){
+			game.setScreen(new CreditScreen(game));
 		}
 		
 	}

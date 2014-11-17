@@ -47,6 +47,7 @@ public class GameScreen extends ScreenBase {
 	BitmapFont font;
 
 	public GameScreen(final GameProject game){
+		super();
 		game.kirby = new Kirby();
 		renderer = new GameRender(game);
 		controller = new GameInputProcessing(game);

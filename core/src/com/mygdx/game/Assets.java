@@ -28,8 +28,9 @@ public class Assets {
 	public static Texture gameover;
 	public static Texture candy;
 	
-	public static Texture aaa;
+	public static Texture logo;
 	public static Texture welcome;
+	public static Texture creditScreen;
 	
 	public static Texture play_button_down;
 	public static Texture play_button_up;
@@ -102,8 +103,9 @@ public class Assets {
 		gameover	= loadTexture("BG/GameOverr.png");
 		candy		= loadTexture("Object/candy/candycane.png");
 		
-		aaa 		= loadTexture("botton/aaa.jpg");
+		logo 		= loadTexture("Object/logo/Logo.png");
 		welcome		= loadTexture("Object/mainMenuScreen/Welcome.png");
+		creditScreen = loadTexture("Object/creditScreen/Credit.png");
 		
 		
 		/**** Load Button ****/
