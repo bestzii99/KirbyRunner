@@ -66,15 +66,15 @@ public class GameRender {
 					game.enemyController.getEnemy().get(id).setBounds(enemy.getPosition().x, enemy.getPosition().y, enemy.getWidth(), enemy.getHeight());
 					break;
 				case Enemy.BIRD_2:
-					keyFrame = Assets.phoenix.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);					
+					keyFrame = Assets.dragon.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);					
 					game.enemyController.getEnemy().get(id).setBounds(enemy.getPosition().x, enemy.getPosition().y, enemy.getWidth(), enemy.getHeight());
 					break;
 				case Enemy.BIRD_3:
-					keyFrame = Assets.bird.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);					
+					keyFrame = Assets.dragon.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);					
 					game.enemyController.getEnemy().get(id).setBounds(enemy.getPosition().x, enemy.getPosition().y, enemy.getWidth(), enemy.getHeight());
 					break;
 				case Enemy.BIRD_4:
-					keyFrame = Assets.bird.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);					
+					keyFrame = Assets.sprite.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);					
 					game.enemyController.getEnemy().get(id).setBounds(enemy.getPosition().x, enemy.getPosition().y, enemy.getWidth(), enemy.getHeight());
 					break;
 				case Enemy.BIRD_5:
@@ -82,7 +82,7 @@ public class GameRender {
 					game.enemyController.getEnemy().get(id).setBounds(enemy.getPosition().x, enemy.getPosition().y, enemy.getWidth(), enemy.getHeight());
 					break;
 				case Enemy.BIRD_6:
-					keyFrame = Assets.nyanCat.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);					
+					keyFrame = Assets.luna.getKeyFrame(GameScreen.stateTime, Animation2.ANIMATION_LOOPING);					
 					game.enemyController.getEnemy().get(id).setBounds(enemy.getPosition().x, enemy.getPosition().y, enemy.getWidth(), enemy.getHeight());
 					break;
 			default:

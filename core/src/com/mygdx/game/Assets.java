@@ -15,23 +15,20 @@ public class Assets {
 	public static Texture bg_game_6;
 	public static Texture bg_game_7;
 	public static Texture bg_game_8;
-	
 	public static Texture stone_1;
 	public static Texture stone_2;
 	public static Texture stone_3;
 	public static Texture stone_4;
 	public static Texture stone_5;
 	public static Texture stone_6;
-	
 	public static Texture hp;
-	
 	public static Texture gameover;
 	public static Texture candy;
-	
 	public static Texture logo;
 	public static Texture welcome;
 	public static Texture creditScreen;
 	
+	/*** *Button **/
 	public static Texture play_button_down;
 	public static Texture play_button_up;
 	public static Texture exit_button_down;
@@ -62,6 +59,9 @@ public class Assets {
 	public static Animation2 nyanCat;
 	public static Animation2 dust;
 	public static Animation2 strawberry;
+	public static Animation2 sprite;
+	public static Animation2 dragon;
+	public static Animation2 luna;
 	
 	/*** Sound ***/ 
 	public static Sound sound_bg;
@@ -82,31 +82,33 @@ public class Assets {
 	
 	/**** Load  ****/
 	public static void load(){
-		bg_game_1 = loadTexture("BG/1_Morning.png");
-		bg_game_2 = loadTexture("BG/2_Late_Morning.png");
-		bg_game_3 = loadTexture("BG/3_Afternoon.png");
-		bg_game_4 = loadTexture("BG/4_Late_Afternoon.png");
-		bg_game_5 = loadTexture("BG/5_Evening.png");
-		bg_game_6 = loadTexture("BG/6_Late_Evening.png");
-		bg_game_7 = loadTexture("BG/7_Night.png");
-		bg_game_8 = loadTexture("BG/8_Late_Night.png");
+		/**
+		 * 
+		 * @Function Load
+		 * 
+		 */
 		
-		stone_1 = loadTexture("Object/stone/Stone1.png");
-		stone_2 = loadTexture("Object/stone/Stone2.png");
-		stone_3 = loadTexture("Object/stone/Stone3.png");
-		stone_4 = loadTexture("Object/stone/Stone4.png");
-		stone_5 = loadTexture("Object/stone/Stone5.png");
-		stone_6 = loadTexture("Object/stone/Stone6.png");
-		
-		hp 		= loadTexture("Object/HP/HP.png");
-		
-		gameover	= loadTexture("BG/GameOverr.png");
-		candy		= loadTexture("Object/candy/candycane.png");
-		
-		logo 		= loadTexture("Object/logo/Logo.png");
-		welcome		= loadTexture("Object/mainMenuScreen/Welcome.png");
-		creditScreen = loadTexture("Object/creditScreen/Credit.png");
-		
+		/*** Load Texture ***/
+		bg_game_1 		= loadTexture("BG/1_Morning.png");
+		bg_game_2 		= loadTexture("BG/2_Late_Morning.png");
+		bg_game_3 		= loadTexture("BG/3_Afternoon.png");
+		bg_game_4 		= loadTexture("BG/4_Late_Afternoon.png");
+		bg_game_5 		= loadTexture("BG/5_Evening.png");
+		bg_game_6 		= loadTexture("BG/6_Late_Evening.png");
+		bg_game_7 		= loadTexture("BG/7_Night.png");
+		bg_game_8 		= loadTexture("BG/8_Late_Night.png");
+		stone_1			= loadTexture("Object/stone/Stone1.png");
+		stone_2 		= loadTexture("Object/stone/Stone2.png");
+		stone_3 		= loadTexture("Object/stone/Stone3.png");
+		stone_4 		= loadTexture("Object/stone/Stone4.png");
+		stone_5 		= loadTexture("Object/stone/Stone5.png");
+		stone_6 		= loadTexture("Object/stone/Stone6.png");		
+		hp 				= loadTexture("Object/HP/HP.png");
+		gameover		= loadTexture("BG/GameOverr.png");
+		candy			= loadTexture("Object/candy/candycane.png");
+		logo 			= loadTexture("Object/logo/Logo.png");
+		welcome			= loadTexture("Object/mainMenuScreen/Welcome.png");
+		creditScreen 	= loadTexture("Object/creditScreen/Credit.png");
 		
 		/**** Load Button ****/
 		play_button_down		= loadTexture("Object/mainMenuScreen/Play_Button_Down.png");
@@ -126,10 +128,8 @@ public class Assets {
 		mainMenu_button_down	= loadTexture("Object/mainMenuScreen/Main_Menu_Button_Down.png");
 		mainMenu_button_up		= loadTexture("Object/mainMenuScreen/Main_Menu_Button_Up.png");
 		
-		
-		
-		
-		kirbyRun 	= new Animation2(0.07f,
+		/*** Load Animation ***/
+		kirbyRun = new Animation2(0.07f,
 										loadSprite("Object/character_walk/Walk1.png"),
 										loadSprite("Object/character_walk/Walk2.png"),
 										loadSprite("Object/character_walk/Walk3.png"),
@@ -142,7 +142,7 @@ public class Assets {
 										loadSprite("Object/character_walk/Walk10.png")
 										);
 		
-		kirbyJump 	= new Animation2(0.03f,
+		kirbyJump = new Animation2(0.03f,
 										loadSprite("Object/character_jump/Jump1.png"),
 										loadSprite("Object/character_jump/Jump2.png"),
 										loadSprite("Object/character_jump/Jump3.png"),
@@ -153,7 +153,7 @@ public class Assets {
 										loadSprite("Object/character_jump/Jump8.png")			
 										);
 		
-		kirbySpin 	= new Animation2(0.1f,
+		kirbySpin = new Animation2(0.1f,
 										loadSprite("Object/character_spin/Spin1.png"),
 										loadSprite("Object/character_spin/Spin2.png"),
 										loadSprite("Object/character_spin/Spin3.png"),
@@ -164,7 +164,7 @@ public class Assets {
 										loadSprite("Object/character_spin/Spin8.png")		
 										);
 		
-		kirbyHurt 	= new Animation2(0.2f,
+		kirbyHurt = new Animation2(0.2f,
 										loadSprite("Object/character_hurt/Hurt1.png"),
 										loadSprite("Object/character_hurt/Hurt1_Blur.png"),
 										loadSprite("Object/character_hurt/Hurt2.png"),
@@ -173,14 +173,14 @@ public class Assets {
 										loadSprite("Object/character_hurt/Hurt3_Blur.png")
 										);
 		
-		bird 		= new Animation2(0.1f,
+		bird = new Animation2(0.1f,
 										loadSprite("Object/bird/Twitter-bird1.png"),
 										loadSprite("Object/bird/Twitter-bird2.png"),
 										loadSprite("Object/bird/Twitter-bird3.png"),
 										loadSprite("Object/bird/Twitter-bird4.png")
 										);
 		
-		phoenix 	= new Animation2(0.1f,
+		phoenix = new Animation2(0.1f,
 										loadSprite("Object/phoenix/Phoenix1.png"),
 										loadSprite("Object/phoenix/Phoenix2.png"),
 										loadSprite("Object/phoenix/Phoenix3.png"),
@@ -199,7 +199,7 @@ public class Assets {
 										loadSprite("Object/phoenix/Phoenix16.png")
 										);
 		
-		nyanCat 	= new Animation2(0.1f,
+		nyanCat = new Animation2(0.1f,
 										loadSprite("Object/nyancat/NyanCat1.png"),
 										loadSprite("Object/nyancat/NyanCat2.png"),
 										loadSprite("Object/nyancat/NyanCat3.png"),
@@ -208,7 +208,7 @@ public class Assets {
 										loadSprite("Object/nyancat/NyanCat6.png")
 										);
 		
-		dust 		= new Animation2(0.1f,
+		dust = new Animation2(0.1f,
 										loadSprite("Object/Dust/Dust1.png"),
 										loadSprite("Object/Dust/Dust2.png"),
 										loadSprite("Object/Dust/Dust3.png"),
@@ -217,7 +217,7 @@ public class Assets {
 										loadSprite("Object/Dust/Dust6.png")
 										);
 		
-		strawberry = new Animation2(0.01f,
+		strawberry	= new Animation2(0.01f,
 										loadSprite("Object/Strawberry/1.png"),
 										loadSprite("Object/Strawberry/2.png"),
 										loadSprite("Object/Strawberry/3.png"),
@@ -246,7 +246,32 @@ public class Assets {
 										loadSprite("Object/Strawberry/26.png")
 										);
 		
+		sprite = new Animation2(0.1f,
+										loadSprite("Object/bird/Sprite1.png"),
+										loadSprite("Object/bird/Sprite2.png"),
+										loadSprite("Object/bird/Sprite3.png"),
+										loadSprite("Object/bird/Sprite4.png")
+										);
 		
+		dragon = new Animation2(0.1f,
+										loadSprite("Object/bird/Dragon1.png"),
+										loadSprite("Object/bird/Dragon2.png"),
+										loadSprite("Object/bird/Dragon3.png"),
+										loadSprite("Object/bird/Dragon4.png"),
+										loadSprite("Object/bird/Dragon5.png"),
+										loadSprite("Object/bird/Dragon6.png")
+										);
+		
+		luna = new Animation2(0.1f,
+										loadSprite("Object/bird/Luna1.png"),
+										loadSprite("Object/bird/Luna2.png"),
+										loadSprite("Object/bird/Luna3.png"),
+										loadSprite("Object/bird/Luna4.png"),
+										loadSprite("Object/bird/Luna5.png"),
+										loadSprite("Object/bird/Luna6.png")
+										);
+		
+		/*** Load Sound ***/
 		sound_bg  		= Gdx.audio.newSound(Gdx.files.internal("sound/Sound_BG.mp3"));
 		sound_hitObject = Gdx.audio.newSound(Gdx.files.internal("sound/Sound_HitObject.mp3"));
 		sound_hurt 		= Gdx.audio.newSound(Gdx.files.internal("sound/Sound_Hurt.mp3"));

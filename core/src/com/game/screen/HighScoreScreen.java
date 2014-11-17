@@ -46,7 +46,7 @@ public class HighScoreScreen extends ScreenBase {
 		game.batch.draw(Assets.highScoreScreen, 0, 0);
 		game.batch.draw(Assets.back_button_up, 10, 10, 100, 95);
 
-		font.setColor(Color.PURPLE);
+		font.setColor(Color.TEAL);
 		// read HighScore from highScore.txt
 		try { font.draw(game.batch,showHighScore(), 280, 265); } 
 		catch (IOException e) { e.printStackTrace(); }
