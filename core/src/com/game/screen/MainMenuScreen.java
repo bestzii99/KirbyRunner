@@ -54,7 +54,7 @@ public class MainMenuScreen extends ScreenBase {
 		startGame	= new Rectangle(220, 180, 200, 50);
 		howToPlay 	= new Rectangle(220, 260, 200, 50);
 		highScore 	= new Rectangle(220, 400, 200, 50);
-		exit 		= new Rectangle(540, 400, 200, 50);		
+		exit 		= new Rectangle(540, 400, 50, 50);		
 	}
 
 	@Override

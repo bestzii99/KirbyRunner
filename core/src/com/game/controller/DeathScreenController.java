@@ -32,7 +32,7 @@ public class DeathScreenController {
 		}else if(pointer.overlaps(deathScreen.restartToMainMenu)){
 			game.batch.draw(Assets.mainMenu_button_down, 370, 0);
 			if(Gdx.input.isButtonPressed(0)){
-				try {Thread.sleep(100);} catch (InterruptedException e) {}
+				try {Thread.sleep(200);} catch (InterruptedException e) {}
 				dispose();
 				game.setScreen(new MainMenuScreen(game));
 			}
