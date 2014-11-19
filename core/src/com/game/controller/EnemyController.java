@@ -78,12 +78,8 @@ public class EnemyController {
 				/*** Check Overlap , If overlap plus HP ***/
 				if( game.kirby.getBounds().overlaps(new Rectangle(object.getPosition().x+150, 100,32,32)) && (object.getType() == 8 || object.getType() == 10) && !object.isHit_Coin()){
 					Assets.sound_hitObject.play();
-//					game.kirby.setHp(game.kirby.getHp()+1);
 					game.kirby.setScore(200);
 					System.out.println(game.kirby.getScore()+"<-------- Plus score"); 
-					System.out.println(game.kirby.getHp()+" <------ HP Plus");
-					System.out.println("Get coin+++");
-					
 					object.setIsHit_Coin(true);			
 					
 				}
@@ -101,8 +97,6 @@ public class EnemyController {
 					Assets.sound_hurt.play();
 					
 					game.kirby.setHp(game.kirby.getHp()-1);			// Minus HP
-					System.out.println(game.kirby.getHp() + "<----- HP Minus");
-					
 					System.out.println("Overlap!");	// OverLap	
 					
 					object.setHit(true);

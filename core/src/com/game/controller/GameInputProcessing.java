@@ -34,9 +34,7 @@ public class GameInputProcessing {
 		
 		/*** Jump ***/
 		if(Gdx.input.isKeyPressed(Keys.UP) && game.kirby.getState() != Kirby.STATE_JUMP && !game.kirby.isAction() && !game.kirby.isAction2()){
-//			Assets.sound_hitObject.play();
 			game.kirby.setState(Kirby.STATE_JUMP);
-			
 			game.kirby.setActionJump2(true);
 			game.kirby.setAction_HurtJump(true);
 			game.kirby.setAction_SpinJump(true);

@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Rectangle;
 import com.game.screen.DeathScreen;
 import com.game.screen.GameScreen;
-import com.game.screen.HowToPlayScreen;
 import com.game.screen.MainMenuScreen;
 import com.mygdx.game.Assets;
 import com.mygdx.game.GameProject;

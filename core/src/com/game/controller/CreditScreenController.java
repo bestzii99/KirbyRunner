@@ -16,7 +16,6 @@ public class CreditScreenController {
 		pointer = new Rectangle();
 		this.game = game;
 		this.creditScreen = creditScreen;
-		
 	}
 	
 	public void update(){

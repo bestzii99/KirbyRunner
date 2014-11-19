@@ -33,7 +33,6 @@ public class HighScoreScreen extends ScreenBase {
 		controller = new HighScoreController(game, this);
 		backToMainMenu = new Rectangle(10, 375, 100, 95);
 		
-		
 		param.size = 80;
 		param.characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^?.,/\\()&*_+-=;:'\"[]{}";
 		font = generator.generateFont(param);
@@ -67,16 +66,16 @@ public class HighScoreScreen extends ScreenBase {
 	public void show() {}
 
 	@Override
-	public void hide() { }
+	public void hide() {}
 
 	@Override
-	public void pause() { }
+	public void pause() {}
 
 	@Override
-	public void resume() { }
+	public void resume() {}
 
 	@Override
-	public void dispose() { }
+	public void dispose() {}
 	
 	public void setFont(int size){ param.size = size; }
 	

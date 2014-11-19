@@ -62,8 +62,9 @@ public class MainMenuScreen extends ScreenBase {
 		TextureRegion keyFrame = null;
 		stateTime += Gdx.graphics.getDeltaTime();
 		
-//		System.out.println(Gdx.input.getX()+ ", " +Gdx.input.getY());
-		System.out.println(Gdx.input.getX()+ ", " +(480-(Gdx.input.getY()))); 		// x,y texture
+//		System.out.println(Gdx.input.getX()+ ", " +Gdx.input.getY());				// x,y rectangle
+//		System.out.println(Gdx.input.getX()+ ", " +(480-(Gdx.input.getY()))); 		// x,y texture
+		/////////////////////////////////////////////////////////////////////////////////////////////
 		
 		game.batch.begin();
 		
@@ -72,7 +73,7 @@ public class MainMenuScreen extends ScreenBase {
 		game.batch.draw(bg_1, currentBgX, 0, width, height);
 		
 		/*** create button ***/
-		game.batch.draw(Assets.logo, 213, 325/*, 200, 70*/);						// label 1, Project Name			
+		game.batch.draw(Assets.logo, 213, 325/*, 200, 70*/);				// label 1, Project Name			
 		game.batch.draw(Assets.play_button_up, 170, 250);					// label 2, Play			
 		game.batch.draw(Assets.howTo_button_up, 170, 170);					// label 3, How To Play				
 		game.batch.draw(Assets.highScore_button_up, 170, 25);				// label 4 High Score

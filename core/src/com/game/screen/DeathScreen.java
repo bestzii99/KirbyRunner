@@ -49,7 +49,7 @@ public class DeathScreen extends ScreenBase {
 		/***
 		 *  check overlap button 
 		 */
-		System.out.println(Gdx.input.getX()+ ", " +Gdx.input.getY());		// x,y rectangle
+//		System.out.println(Gdx.input.getX()+ ", " +Gdx.input.getY());		// x,y rectangle
 //		System.out.println(Gdx.input.getX()+ ", " +(480-(Gdx.input.getY()))); 		// x,y texture
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
