@@ -111,7 +111,7 @@ public class GameScreen extends ScreenBase {
 		font.draw(game.batch, "x " + game.kirby.getHp(), 100, 450);	// show HP
 		font.draw(game.batch, "Score : " + game.kirby.getScore(), 435, 450);	// show score
 		
-//		if(Gdx.input.isKeyJustPressed(Keys.D)) game.kirby.setHp(0);	// set hp 0
+		if(Gdx.input.isKeyJustPressed(Keys.D)) game.kirby.setHp(0);	// set hp 0
 		
 		if(Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
 			cntTime = 0;

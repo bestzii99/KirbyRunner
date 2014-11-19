@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
@@ -22,10 +23,12 @@ public class HighScoreScreen extends ScreenBase {
 	public Rectangle backToMainMenu;
 	
 	HighScoreController controller;
-	
+    FileHandle fontFile 			= Gdx.files.internal("fonts/THSarabun.ttf");
 	FreeTypeFontGenerator generator = new FreeTypeFontGenerator(fontFile);
 	FreeTypeFontParameter param = new FreeTypeFontParameter();
 	BitmapFont font;
+	
+	
 	
 	public HighScoreScreen(GameProject game) {
 		super();
@@ -35,6 +38,7 @@ public class HighScoreScreen extends ScreenBase {
 		
 		param.size = 80;
 		param.characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^?.,/\\()&*_+-=;:'\"[]{}";
+//		font = g
 		font = generator.generateFont(param);
 	}
 
@@ -48,8 +52,8 @@ public class HighScoreScreen extends ScreenBase {
 		
 		font.setColor(Color.TEAL);
 		// read HighScore from highScore.txt
-		try { font.draw(game.batch,showHighScore(), 280, 265); } 
-		catch (IOException e) { e.printStackTrace(); }
+		font.draw(game.batch,showHighScore(), 280, 265);
+//		System.out.println(showHighScore());
 		
 		controller.update();
 		game.batch.end();
@@ -79,13 +83,19 @@ public class HighScoreScreen extends ScreenBase {
 	
 	public void setFont(int size){ param.size = size; }
 	
-	private String showHighScore() throws IOException{
+	private String showHighScore(){
 		File inFile = new File("HighScore.txt");
-		FileReader fileReader = new FileReader(inFile); 
-		BufferedReader bufReader = new BufferedReader(fileReader); 
-		String line = bufReader.readLine(); 	
-		bufReader.close();
-		return line;
+			try{
+				FileReader fileReader = new FileReader(inFile); 
+				BufferedReader bufReader = new BufferedReader(fileReader); 
+				String line = bufReader.readLine();
+				bufReader.close();
+				if(line == null) 
+					return "0";
+				return line;
+			}catch(IOException e){
+				return "0";
+			}
 	}
 
 }
