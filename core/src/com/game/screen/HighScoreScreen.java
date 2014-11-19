@@ -33,6 +33,7 @@ public class HighScoreScreen extends ScreenBase {
 		controller = new HighScoreController(game, this);
 		backToMainMenu = new Rectangle(10, 375, 100, 95);
 		
+		
 		param.size = 80;
 		param.characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^?.,/\\()&*_+-=;:'\"[]{}";
 		font = generator.generateFont(param);
@@ -45,7 +46,7 @@ public class HighScoreScreen extends ScreenBase {
 		// draw Background, Back Button and HighScore 
 		game.batch.draw(Assets.highScoreScreen, 0, 0);
 		game.batch.draw(Assets.back_button_up, 10, 10, 100, 95);
-
+		
 		font.setColor(Color.TEAL);
 		// read HighScore from highScore.txt
 		try { font.draw(game.batch,showHighScore(), 280, 265); } 

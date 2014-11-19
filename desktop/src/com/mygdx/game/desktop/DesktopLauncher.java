@@ -14,7 +14,7 @@ public class DesktopLauncher {
 		config.height = 480;
 		config.resizable= false;
 		config.title = "Kirby Runner";
-		config.addIcon("Object/icon/Kirbyball32x32.png",Files.FileType.Internal);
+		config.addIcon("Object/icon/Kirbyball32_32.png",Files.FileType.Internal);
 		new LwjglApplication(new GameProject(), config);
 	}
 }

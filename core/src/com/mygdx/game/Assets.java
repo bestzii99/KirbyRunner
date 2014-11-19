@@ -90,7 +90,7 @@ public class Assets {
 		
 		/*** Load Texture ***/
 		bg_game_1 		= loadTexture("BG/1_Morning.png");
-		bg_game_2 		= loadTexture("BG/2_Late_Morning.png");
+		bg_game_2 		= loadTexture("BG/2_late_morning.png");
 		bg_game_3 		= loadTexture("BG/3_Afternoon.png");
 		bg_game_4 		= loadTexture("BG/4_Late_Afternoon.png");
 		bg_game_5 		= loadTexture("BG/5_Evening.png");
@@ -122,7 +122,7 @@ public class Assets {
 		back_button_down		= loadTexture("Object/back/Back_Button_Down.png");
 		back_button_up			= loadTexture("Object/back/Back_Button_Up.png");
 		howToPlay				= loadTexture("Object/howToScreen/How_To.png");
-		highScoreScreen			= loadTexture("Object/highScoreScreen/High-Score.png");
+		highScoreScreen			= loadTexture("Object/highScoreScreen/High_Score.png");
 		restart_button_down		= loadTexture("Object/mainMenuScreen/ReStart_Button_Down.png");
 		restart_button_up		= loadTexture("Object/mainMenuScreen/ReStart_Button_Up.png");
 		mainMenu_button_down	= loadTexture("Object/mainMenuScreen/Main_Menu_Button_Down.png");
@@ -168,7 +168,7 @@ public class Assets {
 										loadSprite("Object/character_hurt/Hurt1.png"),
 										loadSprite("Object/character_hurt/Hurt1_Blur.png"),
 										loadSprite("Object/character_hurt/Hurt2.png"),
-										loadSprite("Object/character_hurt/Hurt2_Blur.png"),
+										loadSprite("Object/character_hurt/Hurt2_blur.png"),
 										loadSprite("Object/character_hurt/Hurt3.png"),
 										loadSprite("Object/character_hurt/Hurt3_Blur.png")
 										);

@@ -22,13 +22,13 @@ public class DeathScreen extends ScreenBase {
 	public Rectangle restart;
 	public Rectangle restartToMainMenu;
 	
-	DeathScreenController contraller;
+	DeathScreenController controller;
 	
 	public DeathScreen(GameProject game) {
 		super();
 		this.game = game;
 		Assets.sound_death.play();
-		contraller = new DeathScreenController(game, this);
+		controller = new DeathScreenController(game, this);
 		
 //		new Thread(){
 //			public void run(){
@@ -54,7 +54,7 @@ public class DeathScreen extends ScreenBase {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
 		game.batch.begin();
-
+		
 		font.setColor(Color.BLACK);
 		game.batch.draw(Assets.gameover, 0, 0, 640, 480);
 		game.batch.draw(Assets.restart_button_up, -65, 0);	// draw button restart
@@ -66,7 +66,7 @@ public class DeathScreen extends ScreenBase {
 		} catch (IOException e) { e.printStackTrace(); }
 		font.draw(game.batch, "Score : " + game.kirby.getScore(), 250, 100);
 		
-		contraller.update();
+		controller.update();
 		game.batch.end();
 		
 	}
